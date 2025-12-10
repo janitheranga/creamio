@@ -104,6 +104,45 @@ export const products = [
     stock: 50,
     isFlashSale: false,
   },
+  {
+    id: 9,
+    name: "Parmesan Cheese",
+    category: "Cheese",
+    price: 8.99,
+    discountedPrice: 6.99,
+    image:
+      "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&h=500&fit=crop",
+    rating: 4.9,
+    reviews: 145,
+    stock: 22,
+    isFlashSale: true,
+  },
+  {
+    id: 10,
+    name: "Cottage Cheese",
+    category: "Cheese",
+    price: 5.49,
+    discountedPrice: 3.99,
+    image:
+      "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=500&h=500&fit=crop",
+    rating: 4.6,
+    reviews: 112,
+    stock: 35,
+    isFlashSale: true,
+  },
+  {
+    id: 11,
+    name: "Whipped Cream",
+    category: "Cream",
+    price: 4.29,
+    discountedPrice: 2.99,
+    image:
+      "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500&h=500&fit=crop",
+    rating: 4.7,
+    reviews: 98,
+    stock: 42,
+    isFlashSale: true,
+  },
 ];
 
 // Categories data
