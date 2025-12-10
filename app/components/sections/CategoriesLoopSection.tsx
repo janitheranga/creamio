@@ -30,7 +30,7 @@ export default function CategoriesLoopSection() {
 
         {/* Scrolling Loop */}
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-hidden py-4"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >

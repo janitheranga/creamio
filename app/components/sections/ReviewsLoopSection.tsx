@@ -32,7 +32,7 @@ export default function ReviewsLoopSection() {
 
         {/* Top Row - Scroll Left */}
         <div
-          className="relative overflow-hidden mb-6"
+          className="relative overflow-hidden mb-6 py-2"
           onMouseEnter={() => setIsPausedTop(true)}
           onMouseLeave={() => setIsPausedTop(false)}
         >
@@ -96,7 +96,7 @@ export default function ReviewsLoopSection() {
 
         {/* Bottom Row - Scroll Right */}
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-hidden py-2"
           onMouseEnter={() => setIsPausedBottom(true)}
           onMouseLeave={() => setIsPausedBottom(false)}
         >

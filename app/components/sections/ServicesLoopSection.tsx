@@ -27,7 +27,7 @@ export default function ServicesLoopSection() {
 
         {/* Scrolling Loop */}
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-hidden py-4"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >

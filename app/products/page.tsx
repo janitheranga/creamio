@@ -215,10 +215,10 @@ export default function ProductsPage() {
               <div className="flex gap-2 items-center">
                 <p className="pr-4">View as</p>
                 {[
-                  { id: "grid", icon: MdTableRows, label: "Row View" },
-                  { id: "2col", icon: TfiLayoutGrid2Alt, label: "2 Columns" },
-                  { id: "3col", icon: TfiLayoutGrid3Alt, label: "3 Columns" },
-                  { id: "4col", icon: TfiLayoutGrid4Alt, label: "4 Columns" },
+                  { id: "grid", icon: MdTableRows },
+                  { id: "2col", icon: TfiLayoutGrid2Alt },
+                  { id: "3col", icon: TfiLayoutGrid3Alt },
+                  { id: "4col", icon: TfiLayoutGrid4Alt },
                 ].map((option) => (
                   <motion.button
                     key={option.id}
@@ -358,22 +358,24 @@ export default function ProductsPage() {
                     </div>
 
                     {/* Add to Cart Button */}
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addItem({
-                          id: String(product.id),
-                          name: product.name,
-                          price: product.discountedPrice,
-                        });
-                      }}
-                      className="w-full mt-4 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
-                    >
-                      <ShoppingCart className="w-4 h-4" />
-                      Add to Cart
-                    </motion.button>
+                    <div className="flex justify-center">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addItem({
+                            id: String(product.id),
+                            name: product.name,
+                            price: product.discountedPrice,
+                          });
+                        }}
+                        className="w-[95%] mt-4 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        Add to Cart
+                      </motion.button>
+                    </div>
                   </div>
                 </motion.div>
               ))}

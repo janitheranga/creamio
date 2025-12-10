@@ -33,6 +33,7 @@ export default function ProductDetailModal({
 }: ProductDetailModalProps) {
   const [quantity, setQuantity] = useState(1);
   const [mounted, setMounted] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
   const addItem = useCartStore((state) => state.addItem);
 
   useState(() => {
@@ -40,6 +41,16 @@ export default function ProductDetailModal({
   });
 
   if (!product || !isOpen || !mounted) return null;
+
+  // Generate multiple image variations (or use product.images if available)
+  const productImages = Array.isArray((product as any).images)
+    ? (product as any).images
+    : [
+        product.image,
+        `${product.image}&brightness=1.1`,
+        `${product.image}&contrast=1.1`,
+        `${product.image}&saturation=1.2`,
+      ];
 
   const handleAddToCart = () => {
     addItem({
@@ -86,7 +97,7 @@ export default function ProductDetailModal({
             <div className="relative">
               <div className="relative aspect-square rounded-xl overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
                 <img
-                  src={product.image}
+                  src={productImages[selectedImage]}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
@@ -102,6 +113,32 @@ export default function ProductDetailModal({
                 <div className="absolute top-4 right-4 bg-celadon-500 text-white px-3 py-1 rounded-lg text-sm font-semibold">
                   {product.stock} in stock
                 </div>
+              </div>
+
+              {/* Image Selector */}
+              <div className="flex gap-2 mt-4 overflow-x-auto py-2 px-2">
+                {productImages.map((img: string, idx: number) => (
+                  <motion.button
+                    key={idx}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setSelectedImage(idx)}
+                    className={`relative shrink-0 w-20 h-20 rounded-lg overflow-hidden cursor-pointer transition-all ${
+                      selectedImage === idx
+                        ? "ring-2 ring-celadon-500 ring-offset-2 dark:ring-offset-slate-950"
+                        : "ring-1 ring-celadon-100 dark:ring-celadon-800 hover:ring-celadon-300 dark:hover:ring-celadon-600"
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product.name} view ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    {selectedImage === idx && (
+                      <div className="absolute inset-0 bg-celadon-500/20" />
+                    )}
+                  </motion.button>
+                ))}
               </div>
             </div>
 
