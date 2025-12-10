@@ -1,12 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { products } from "@/app/lib/data";
+import { useCartStore } from "@/app/lib/store/cartStore";
 import { Star, ShoppingCart, Zap } from "lucide-react";
+import ProductDetailModal from "@/app/components/ProductDetailModal";
 
 const flashSaleProducts = products.filter((p) => p.isFlashSale);
 
 export default function FlashSalesSection() {
+  const addItem = useCartStore((state) => state.addItem);
+  const [selectedProduct, setSelectedProduct] = useState<
+    (typeof flashSaleProducts)[0] | null
+  >(null);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -50,10 +58,11 @@ export default function FlashSalesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               whileHover={{ y: -10 }}
-              className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all"
+              onClick={() => setSelectedProduct(product)}
+              className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all cursor-pointer"
             >
               {/* Image */}
-              <div className="relative h-40 overflow-hidden bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+              <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -125,6 +134,14 @@ export default function FlashSalesSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addItem({
+                      id: String(product.id),
+                      name: product.name,
+                      price: product.discountedPrice,
+                    });
+                  }}
                   className="w-full mt-4 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <ShoppingCart className="w-4 h-4" />
@@ -135,6 +152,12 @@ export default function FlashSalesSection() {
           ))}
         </div>
       </div>
+
+      <ProductDetailModal
+        product={selectedProduct}
+        isOpen={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
     </motion.section>
   );
 }

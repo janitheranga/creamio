@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { products, categories } from "@/app/lib/data";
+import { useCartStore } from "@/app/lib/store/cartStore";
+import ProductDetailModal from "@/app/components/ProductDetailModal";
 import { Star, ShoppingCart, LayoutGrid, List } from "lucide-react";
 import { MdTableRows } from "react-icons/md";
 import {
@@ -21,6 +23,11 @@ import {
 } from "@/app/components/ui/dropdown-menu";
 
 export default function ProductsPage() {
+  const addItem = useCartStore((state) => state.addItem);
+
+  const [selectedProduct, setSelectedProduct] = useState<
+    (typeof products)[0] | null
+  >(null);
   const [layout, setLayout] = useState<"grid" | "2col" | "3col" | "4col">(
     "grid"
   );
@@ -185,14 +192,14 @@ export default function ProductsPage() {
             {/* Hero Section */}
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="relative h-64 rounded-2xl overflow-hidden mb-8 bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/30 dark:to-icy-aqua-900/30"
+              className="relative h-64 rounded-2xl overflow-hidden mb-8 bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/30 dark:to-icy-aqua-900/30"
             >
               <img
                 src="https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=1200&h=400&fit=crop"
                 alt="Products"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-8">
                 <h1 className="text-4xl font-bold text-white">Our Products</h1>
               </div>
             </motion.div>
@@ -297,10 +304,11 @@ export default function ProductsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   whileHover={{ y: -10 }}
-                  className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all"
+                  onClick={() => setSelectedProduct(product)}
+                  className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all cursor-pointer"
                 >
                   {/* Image */}
-                  <div className="relative h-40 overflow-hidden bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                  <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
                     <img
                       src={product.image}
                       alt={product.name}
@@ -353,6 +361,14 @@ export default function ProductsPage() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addItem({
+                          id: String(product.id),
+                          name: product.name,
+                          price: product.discountedPrice,
+                        });
+                      }}
                       className="w-full mt-4 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
                       <ShoppingCart className="w-4 h-4" />
@@ -373,6 +389,12 @@ export default function ProductsPage() {
           </motion.div>
         </div>
       </div>
+
+      <ProductDetailModal
+        product={selectedProduct}
+        isOpen={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
     </motion.div>
   );
 }

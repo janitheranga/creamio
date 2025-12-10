@@ -1,86 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Search, Heart, ShoppingCart, Menu, X } from "lucide-react";
-import { Plus, Minus, Trash2 } from "lucide-react";
-import { languages, currencies } from "@/app/lib/data";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/app/components/ui/dropdown-menu";
+import { Search, Heart, ShoppingCart, Menu, X, Plus, Minus, Trash2 } from "lucide-react";
+import { useCartStore } from "@/app/lib/store/cartStore";
 import ThemeToggle from "@/app/components/ThemeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
-  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0]);
   const [searchValue, setSearchValue] = useState("");
+  const [mounted, setMounted] = useState(false);
 
-  type CartItem = { id: string; name: string; price: number; qty: number };
-
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const cartItems = useCartStore((state) => state.items);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
-
-  const addItem = (item: Omit<CartItem, "qty"> & { qty?: number }) => {
-    setCartItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id);
-      if (existing) {
-        return prev.map((i) =>
-          i.id === item.id ? { ...i, qty: i.qty + (item.qty ?? 1) } : i
-        );
-      }
-      return [...prev, { ...item, qty: item.qty ?? 1 }];
-    });
-  };
-
-  const updateQuantity = (id: string, qty: number) => {
-    if (qty < 1) return;
-    setCartItems((prev) => prev.map((i) => (i.id === id ? { ...i, qty } : i)));
-  };
-
-  const removeItem = (id: string) => {
-    setCartItems((prev) => prev.filter((i) => i.id !== id));
-  };
+  const cartSubtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   useEffect(() => {
-    // Allow other components to dispatch cart updates via custom events
-    const handleAdd = (event: Event) => {
-      const custom = event as CustomEvent<{
-        id: string;
-        name: string;
-        price: number;
-        qty?: number;
-      }>;
-      addItem(custom.detail);
-    };
-
-    const handleUpdate = (event: Event) => {
-      const custom = event as CustomEvent<{ id: string; qty: number }>;
-      updateQuantity(custom.detail.id, custom.detail.qty);
-    };
-
-    const handleRemove = (event: Event) => {
-      const custom = event as CustomEvent<{ id: string }>;
-      removeItem(custom.detail.id);
-    };
-
-    window.addEventListener("cart:add", handleAdd as EventListener);
-    window.addEventListener("cart:update", handleUpdate as EventListener);
-    window.addEventListener("cart:remove", handleRemove as EventListener);
-
-    return () => {
-      window.removeEventListener("cart:add", handleAdd as EventListener);
-      window.removeEventListener("cart:update", handleUpdate as EventListener);
-      window.removeEventListener("cart:remove", handleRemove as EventListener);
-    };
+    setMounted(true);
   }, []);
 
   return (
@@ -110,10 +52,7 @@ export default function Navbar() {
 
           {/* Center Search Bar - Hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-md mx-4">
-            <motion.div
-              className="relative w-full"
-              whileFocus={{ scale: 1.02 }}
-            >
+            <motion.div className="relative w-full" whileFocus={{ scale: 1.02 }}>
               <input
                 type="text"
                 placeholder="Search dairy products..."
@@ -173,11 +112,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900"
             >
-              {isOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -221,150 +156,143 @@ export default function Navbar() {
         )}
       </div>
 
-      {isCartOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-start justify-end bg-black/40 backdrop-blur-sm"
-          onClick={(e) => {
-            if (e.currentTarget === e.target) setIsCartOpen(false);
-          }}
-        >
-          <motion.div
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 100, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
-            className="w-full max-w-md h-full bg-white dark:bg-slate-950 shadow-2xl border-l border-celadon-100 dark:border-celadon-800 flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between px-5 py-4 border-b border-celadon-100 dark:border-celadon-800">
-              <div>
-                <p className="text-sm uppercase tracking-wide text-celadon-600 dark:text-celadon-400">
-                  Your Cart
-                </p>
-                <p className="text-lg font-semibold text-slate-900 dark:text-white">
-                  {cartCount} item{cartCount === 1 ? "" : "s"}
-                </p>
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsCartOpen(false)}
-                className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors"
-                aria-label="Close cart"
+      {/* Cart Overlay via portal */}
+      {mounted && isCartOpen
+        ? createPortal(
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-start justify-end bg-black/40 backdrop-blur-sm"
+              onClick={(e) => {
+                if (e.currentTarget === e.target) setIsCartOpen(false);
+              }}
+            >
+              <motion.div
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 260, damping: 24 }}
+                className="w-full max-w-md h-full bg-white dark:bg-slate-950 shadow-2xl border-l border-celadon-100 dark:border-celadon-800 flex flex-col"
+                onClick={(e) => e.stopPropagation()}
               >
-                <X className="w-5 h-5" />
-              </motion.button>
-            </div>
+                <div className="flex items-center justify-between px-5 py-4 border-b border-celadon-100 dark:border-celadon-800">
+                  <div>
+                    <p className="text-sm uppercase tracking-wide text-celadon-600 dark:text-celadon-400">
+                      Your Cart
+                    </p>
+                    <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                      {cartCount} item{cartCount === 1 ? "" : "s"}
+                    </p>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setIsCartOpen(false)}
+                    className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors"
+                    aria-label="Close cart"
+                  >
+                    <X className="w-5 h-5" />
+                  </motion.button>
+                </div>
 
-            <div className="flex-1 px-5 py-6 space-y-4 bg-white dark:bg-slate-950">
-              {cartItems.length === 0 ? (
-                <div className="h-full flex items-center justify-center">
-                  <div className="w-full max-w-sm text-center flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400">
-                    <div className="w-14 h-14 rounded-full bg-celadon-50 dark:bg-celadon-900/40 flex items-center justify-center">
-                      <ShoppingCart className="w-7 h-7 text-celadon-600 dark:text-celadon-400" />
+                <div className="flex-1 overflow-y-auto px-5 py-6 space-y-4 bg-white dark:bg-slate-950">
+                  {cartItems.length === 0 ? (
+                    <div className="h-full flex items-center justify-center">
+                      <div className="w-full max-w-sm text-center flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400">
+                        <div className="w-14 h-14 rounded-full bg-celadon-50 dark:bg-celadon-900/40 flex items-center justify-center">
+                          <ShoppingCart className="w-7 h-7 text-celadon-600 dark:text-celadon-400" />
+                        </div>
+                        <div>
+                          <p className="text-base font-semibold text-slate-800 dark:text-white">
+                            Your cart is empty
+                          </p>
+                          <p className="text-sm">Add items to see them here.</p>
+                        </div>
+                        <Link
+                          href="/products"
+                          className="px-4 py-2 bg-celadon-500 hover:bg-celadon-600 text-white rounded-lg font-semibold transition-colors cursor-pointer"
+                        >
+                          Continue shopping
+                        </Link>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-base font-semibold text-slate-800 dark:text-white">
-                        Your cart is empty
-                      </p>
-                      <p className="text-sm">Add items to see them here.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {cartItems.map((item) => (
+                        <div
+                          key={item.id}
+                          className="flex items-center justify-between gap-3 rounded-lg border border-celadon-100 dark:border-celadon-800 p-3"
+                        >
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-slate-900 dark:text-white line-clamp-1">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
+                              ${item.price.toFixed(2)} each
+                            </p>
+                            <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-celadon-50 dark:bg-celadon-900/60 px-2 py-1">
+                              <button
+                                onClick={() => updateQuantity(item.id, item.qty - 1)}
+                                className="p-1 rounded-full hover:bg-celadon-100 dark:hover:bg-celadon-800 transition-colors"
+                                aria-label={`Decrease ${item.name}`}
+                              >
+                                <Minus className="w-4 h-4" />
+                              </button>
+                              <span className="w-8 text-center text-sm font-semibold">{item.qty}</span>
+                              <button
+                                onClick={() => updateQuantity(item.id, item.qty + 1)}
+                                className="p-1 rounded-full hover:bg-celadon-100 dark:hover:bg-celadon-800 transition-colors"
+                                aria-label={`Increase ${item.name}`}
+                              >
+                                <Plus className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col items-end gap-2">
+                            <div className="text-sm font-semibold text-celadon-600 dark:text-celadon-400">
+                              ${(item.price * item.qty).toFixed(2)}
+                            </div>
+                            <button
+                              onClick={() => removeItem(item.id)}
+                              className="text-xs text-slate-500 hover:text-cherry-blossom-500 transition-colors flex items-center gap-1"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              Remove
+                            </button>
+                          </div>
+                        </div>
+                      ))}
                     </div>
+                  )}
+                </div>
+
+                <div className="px-5 py-4 border-t border-celadon-100 dark:border-celadon-800 space-y-3 bg-celadon-50/60 dark:bg-slate-900/60">
+                  <div className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300">
+                    <span>Subtotal</span>
+                    <span className="font-semibold">${cartSubtotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex gap-3">
                     <Link
-                      href="/products"
-                      className="px-4 py-2 bg-celadon-500 hover:bg-celadon-600 text-white rounded-lg font-semibold transition-colors cursor-pointer"
+                      href="/cart"
+                      className="flex-1 text-center px-4 py-2 rounded-lg border border-celadon-400 text-celadon-700 dark:text-celadon-300 hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer font-semibold"
                     >
-                      Continue shopping
+                      View cart
                     </Link>
+                    <button
+                      disabled={cartItems.length === 0}
+                      className="flex-1 px-4 py-2 rounded-lg bg-celadon-500 disabled:bg-celadon-200 text-white font-semibold hover:bg-celadon-600 transition-colors cursor-pointer disabled:cursor-not-allowed"
+                    >
+                      Checkout
+                    </button>
                   </div>
                 </div>
-              ) : (
-                <div className="space-y-3">
-                  {cartItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex items-center justify-between gap-3 rounded-lg border border-celadon-100 dark:border-celadon-800 p-3"
-                    >
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-slate-900 dark:text-white line-clamp-1">
-                          {item.name}
-                        </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">
-                          ${item.price.toFixed(2)} each
-                        </p>
-                        <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-celadon-50 dark:bg-celadon-900/60 px-2 py-1">
-                          <button
-                            onClick={() =>
-                              updateQuantity(item.id, item.qty - 1)
-                            }
-                            className="p-1 rounded-full hover:bg-celadon-100 dark:hover:bg-celadon-800 transition-colors"
-                            aria-label={`Decrease ${item.name}`}
-                          >
-                            <Minus className="w-4 h-4" />
-                          </button>
-                          <span className="w-8 text-center text-sm font-semibold">
-                            {item.qty}
-                          </span>
-                          <button
-                            onClick={() =>
-                              updateQuantity(item.id, item.qty + 1)
-                            }
-                            className="p-1 rounded-full hover:bg-celadon-100 dark:hover:bg-celadon-800 transition-colors"
-                            aria-label={`Increase ${item.name}`}
-                          >
-                            <Plus className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col items-end gap-2">
-                        <div className="text-sm font-semibold text-celadon-600 dark:text-celadon-400">
-                          ${(item.price * item.qty).toFixed(2)}
-                        </div>
-                        <button
-                          onClick={() => removeItem(item.id)}
-                          className="text-xs text-slate-500 hover:text-cherry-blossom-500 transition-colors flex items-center gap-1"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="px-5 py-4 border-t border-celadon-100 dark:border-celadon-800 space-y-3 bg-celadon-50/60 dark:bg-slate-900/60">
-              <div className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300">
-                <span>Subtotal</span>
-                <span className="font-semibold">
-                  $
-                  {cartItems
-                    .reduce((sum, item) => sum + item.price * item.qty, 0)
-                    .toFixed(2)}
-                </span>
-              </div>
-              <div className="flex gap-3">
-                <Link
-                  href="/cart"
-                  className="flex-1 text-center px-4 py-2 rounded-lg border border-celadon-400 text-celadon-700 dark:text-celadon-300 hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer font-semibold"
-                >
-                  View cart
-                </Link>
-                <button
-                  disabled={cartItems.length === 0}
-                  className="flex-1 px-4 py-2 rounded-lg bg-celadon-500 disabled:bg-celadon-200 text-white font-semibold hover:bg-celadon-600 transition-colors cursor-pointer disabled:cursor-not-allowed"
-                >
-                  Checkout
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+              </motion.div>
+            </motion.div>,
+            document.body
+          )
+        : null}
     </motion.nav>
   );
 }
