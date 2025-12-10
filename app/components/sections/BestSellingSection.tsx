@@ -10,7 +10,7 @@ import { Star, ShoppingCart, Heart } from "lucide-react";
 import ProductDetailModal from "@/app/components/ProductDetailModal";
 
 const bestSellingProducts = products
-  .sort(() => Math.random() - 0.5)
+  .sort((a, b) => b.rating - a.rating || b.reviews - a.reviews)
   .slice(0, 8);
 
 export default function BestSellingSection() {
