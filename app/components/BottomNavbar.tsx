@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { categories, languages, currencies } from "@/app/lib/data";
 import Link from "next/link";
@@ -26,6 +27,7 @@ import {
 } from "@/app/components/ui/dropdown-menu";
 
 export default function BottomNavbar() {
+  const pathname = usePathname();
   const [categorySearch, setCategorySearch] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0]);
@@ -114,24 +116,43 @@ export default function BottomNavbar() {
 
             {/* Navigation Items - Hidden on mobile */}
             <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item, idx) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer group"
+              {navItems.map((item, idx) => {
+                const isActive = pathname === item.href;
+                return (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
                   >
-                    <item.icon className="w-4 h-4 text-slate-600 dark:text-slate-400 group-hover:text-celadon-600 dark:group-hover:text-celadon-400 transition-colors" />
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-celadon-600 dark:group-hover:text-celadon-400 transition-colors">
-                      {item.name}
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors cursor-pointer group ${
+                        isActive
+                          ? "bg-celadon-500 text-white"
+                          : "hover:bg-celadon-100 dark:hover:bg-celadon-900"
+                      }`}
+                    >
+                      <item.icon
+                        className={`w-4 h-4 transition-colors ${
+                          isActive
+                            ? "text-white"
+                            : "text-slate-600 dark:text-slate-400 group-hover:text-celadon-600 dark:group-hover:text-celadon-400"
+                        }`}
+                      />
+                      <span
+                        className={`text-sm font-medium transition-colors ${
+                          isActive
+                            ? "text-white"
+                            : "text-slate-700 dark:text-slate-300 group-hover:text-celadon-600 dark:group-hover:text-celadon-400"
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </nav>
           </div>
 
@@ -236,17 +257,24 @@ export default function BottomNavbar() {
                 <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuLabel>Menu</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  {navItems.map((item) => (
-                    <DropdownMenuItem key={item.name} asChild>
-                      <Link
-                        href={item.href}
-                        className="flex items-center gap-2 cursor-pointer"
-                      >
-                        <item.icon className="w-4 h-4" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
+                  {navItems.map((item) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <DropdownMenuItem key={item.name} asChild>
+                        <Link
+                          href={item.href}
+                          className={`flex items-center gap-2 cursor-pointer ${
+                            isActive
+                              ? "bg-celadon-100 dark:bg-celadon-900 font-semibold"
+                              : ""
+                          }`}
+                        >
+                          <item.icon className="w-4 h-4" />
+                          <span>{item.name}</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
