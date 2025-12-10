@@ -16,6 +16,7 @@ export default function WishlistPage() {
       id: item.id,
       name: item.name,
       price: item.discountedPrice,
+      image: item.image,
     });
   };
 

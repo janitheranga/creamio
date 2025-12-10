@@ -269,6 +269,7 @@ export default function DealsPage() {
                         id: String(product.id),
                         name: product.name,
                         price: product.discountedPrice,
+                        image: product.image,
                       });
                     }}
                     className="w-full bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
@@ -418,6 +419,7 @@ export default function DealsPage() {
                             id: String(product.id),
                             name: product.name,
                             price: product.discountedPrice,
+                            image: product.image,
                           });
                         }}
                         className="w-full mt-3 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer"

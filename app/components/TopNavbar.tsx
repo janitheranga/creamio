@@ -3,8 +3,18 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "motion/react";
-import { Search, Heart, ShoppingCart, Menu, X, Plus, Minus, Trash2 } from "lucide-react";
+import {
+  Search,
+  Heart,
+  ShoppingCart,
+  Menu,
+  X,
+  Plus,
+  Minus,
+  Trash2,
+} from "lucide-react";
 import { useCartStore } from "@/app/lib/store/cartStore";
 import ThemeToggle from "@/app/components/ThemeToggle";
 
@@ -19,7 +29,10 @@ export default function Navbar() {
   const removeItem = useCartStore((state) => state.removeItem);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
-  const cartSubtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const cartSubtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -52,7 +65,10 @@ export default function Navbar() {
 
           {/* Center Search Bar - Hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-md mx-4">
-            <motion.div className="relative w-full" whileFocus={{ scale: 1.02 }}>
+            <motion.div
+              className="relative w-full"
+              whileFocus={{ scale: 1.02 }}
+            >
               <input
                 type="text"
                 placeholder="Search dairy products..."
@@ -112,7 +128,11 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900"
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -222,8 +242,18 @@ export default function Navbar() {
                       {cartItems.map((item) => (
                         <div
                           key={item.id}
-                          className="flex items-center justify-between gap-3 rounded-lg border border-celadon-100 dark:border-celadon-800 p-3"
+                          className="flex items-center gap-3 rounded-lg border border-celadon-100 dark:border-celadon-800 p-3"
                         >
+                          {item.image && (
+                            <div className="relative w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-celadon-50 dark:bg-celadon-900/20">
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                          )}
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold text-slate-900 dark:text-white line-clamp-1">
                               {item.name}
@@ -233,15 +263,21 @@ export default function Navbar() {
                             </p>
                             <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-celadon-50 dark:bg-celadon-900/60 px-2 py-1">
                               <button
-                                onClick={() => updateQuantity(item.id, item.qty - 1)}
+                                onClick={() =>
+                                  updateQuantity(item.id, item.qty - 1)
+                                }
                                 className="p-1 rounded-full hover:bg-celadon-100 dark:hover:bg-celadon-800 transition-colors"
                                 aria-label={`Decrease ${item.name}`}
                               >
                                 <Minus className="w-4 h-4" />
                               </button>
-                              <span className="w-8 text-center text-sm font-semibold">{item.qty}</span>
+                              <span className="w-8 text-center text-sm font-semibold">
+                                {item.qty}
+                              </span>
                               <button
-                                onClick={() => updateQuantity(item.id, item.qty + 1)}
+                                onClick={() =>
+                                  updateQuantity(item.id, item.qty + 1)
+                                }
                                 className="p-1 rounded-full hover:bg-celadon-100 dark:hover:bg-celadon-800 transition-colors"
                                 aria-label={`Increase ${item.name}`}
                               >
@@ -271,7 +307,9 @@ export default function Navbar() {
                 <div className="px-5 py-4 border-t border-celadon-100 dark:border-celadon-800 space-y-3 bg-celadon-50/60 dark:bg-slate-900/60">
                   <div className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300">
                     <span>Subtotal</span>
-                    <span className="font-semibold">${cartSubtotal.toFixed(2)}</span>
+                    <span className="font-semibold">
+                      ${cartSubtotal.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex gap-3">
                     <Link

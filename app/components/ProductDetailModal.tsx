@@ -52,12 +52,7 @@ export default function ProductDetailModal({
   // Generate multiple image variations (or use product.images if available)
   const productImages = Array.isArray((product as any).images)
     ? (product as any).images
-    : [
-        product.image,
-        product.image,
-        product.image,
-        product.image,
-      ];
+    : [product.image, product.image, product.image, product.image];
 
   const handleAddToCart = () => {
     addItem({
@@ -65,6 +60,7 @@ export default function ProductDetailModal({
       name: product.name,
       price: product.discountedPrice,
       qty: quantity,
+      image: product.image,
     });
     onClose();
   };
