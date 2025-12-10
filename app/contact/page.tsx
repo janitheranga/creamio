@@ -66,10 +66,10 @@ export default function ContactPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       {/* Hero Section */}
-      <section className="relative py-20 bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-950 dark:to-icy-aqua-950">
+      <section className="relative py-20 bg-linear-to-br from-celadon-50 to-icy-aqua-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -77,11 +77,11 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <MessageSquare className="w-16 h-16 mx-auto mb-6 text-celadon-600 dark:text-celadon-400" />
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <MessageSquare className="w-16 h-16 mx-auto mb-6 text-celadon-600" />
+            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
               Get In Touch
             </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Have questions? We'd love to hear from you. Send us a message and
               we'll respond as soon as possible.
             </p>
@@ -101,19 +101,16 @@ export default function ContactPage() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all text-center"
+                className="bg-white rounded-xl p-6 border border-celadon-100 hover:border-celadon-400 transition-all text-center"
               >
-                <div className="w-12 h-12 bg-celadon-100 dark:bg-celadon-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <info.icon className="w-6 h-6 text-celadon-600 dark:text-celadon-400" />
+                <div className="w-12 h-12 bg-celadon-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <info.icon className="w-6 h-6 text-celadon-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
+                <h3 className="text-lg font-semibold text-slate-900 mb-3">
                   {info.title}
                 </h3>
                 {info.details.map((detail, i) => (
-                  <p
-                    key={i}
-                    className="text-slate-600 dark:text-slate-400 text-sm"
-                  >
+                  <p key={i} className="text-slate-600 text-sm">
                     {detail}
                   </p>
                 ))}
@@ -130,14 +127,14 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">
                 Send Us a Message
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-semibold text-slate-900 dark:text-white mb-2"
+                    className="block text-sm font-semibold text-slate-900 mb-2"
                   >
                     Full Name
                   </label>
@@ -148,7 +145,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 dark:border-celadon-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 bg-white text-slate-900 focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all"
                     placeholder="John Doe"
                   />
                 </div>
@@ -156,7 +153,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-semibold text-slate-900 dark:text-white mb-2"
+                    className="block text-sm font-semibold text-slate-900 mb-2"
                   >
                     Email Address
                   </label>
@@ -167,7 +164,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 dark:border-celadon-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 bg-white text-slate-900 focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -175,7 +172,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-semibold text-slate-900 dark:text-white mb-2"
+                    className="block text-sm font-semibold text-slate-900 mb-2"
                   >
                     Subject
                   </label>
@@ -186,7 +183,7 @@ export default function ContactPage() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 dark:border-celadon-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 bg-white text-slate-900 focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all"
                     placeholder="How can we help?"
                   />
                 </div>
@@ -194,7 +191,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-semibold text-slate-900 dark:text-white mb-2"
+                    className="block text-sm font-semibold text-slate-900 mb-2"
                   >
                     Message
                   </label>
@@ -205,7 +202,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 dark:border-celadon-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-lg border border-celadon-200 bg-white text-slate-900 focus:ring-2 focus:ring-celadon-500 focus:border-transparent outline-none transition-all resize-none"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -214,7 +211,7 @@ export default function ContactPage() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full bg-celadon-500 hover:bg-celadon-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <Send className="w-5 h-5" />
                   {submitted ? "Message Sent!" : "Send Message"}
@@ -224,7 +221,7 @@ export default function ContactPage() {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center text-celadon-600 dark:text-celadon-400 font-medium"
+                    className="text-center text-celadon-600 font-medium"
                   >
                     Thank you! We'll get back to you soon.
                   </motion.div>
@@ -240,12 +237,12 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">
                 Visit Our Store
               </h2>
 
               {/* Map Placeholder */}
-              <div className="relative h-80 rounded-xl overflow-hidden border border-celadon-200 dark:border-celadon-800">
+              <div className="relative h-80 rounded-xl overflow-hidden border border-celadon-200">
                 <Image
                   src="/images/etc/Store_Location.jpg"
                   alt="Store location"
@@ -253,12 +250,12 @@ export default function ContactPage() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-celadon-500/20 flex items-center justify-center">
-                  <div className="bg-white dark:bg-slate-900 rounded-lg p-4 shadow-xl">
-                    <MapPin className="w-8 h-8 text-celadon-600 dark:text-celadon-400 mx-auto mb-2" />
-                    <p className="text-slate-900 dark:text-white font-semibold text-center">
+                  <div className="bg-white rounded-lg p-4 shadow-xl">
+                    <MapPin className="w-8 h-8 text-celadon-600 mx-auto mb-2" />
+                    <p className="text-slate-900 font-semibold text-center">
                       123 Dairy Lane
                     </p>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm text-center">
+                    <p className="text-slate-600 text-sm text-center">
                       Fresh Valley, CA 94102
                     </p>
                   </div>
@@ -266,8 +263,8 @@ export default function ContactPage() {
               </div>
 
               {/* Additional Info */}
-              <div className="bg-celadon-50 dark:bg-celadon-900/20 rounded-xl p-6 border border-celadon-200 dark:border-celadon-800">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-4">
+              <div className="bg-celadon-50 rounded-xl p-6 border border-celadon-200">
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">
                   Why Choose Creamio?
                 </h3>
                 <ul className="space-y-3">
@@ -284,7 +281,7 @@ export default function ContactPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: idx * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-start gap-2 text-slate-600 dark:text-slate-400"
+                      className="flex items-start gap-2 text-slate-600"
                     >
                       <div className="w-5 h-5 rounded-full bg-celadon-500 shrink-0 flex items-center justify-center mt-0.5">
                         <svg
@@ -312,7 +309,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -321,10 +318,10 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400">
+            <p className="text-xl text-slate-600">
               Quick answers to common questions
             </p>
           </motion.div>
@@ -358,14 +355,12 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-slate-950 rounded-xl p-6 border border-celadon-100 dark:border-celadon-800"
+                className="bg-white rounded-xl p-6 border border-celadon-100"
               >
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400">
-                  {faq.answer}
-                </p>
+                <p className="text-slate-600">{faq.answer}</p>
               </motion.div>
             ))}
           </div>

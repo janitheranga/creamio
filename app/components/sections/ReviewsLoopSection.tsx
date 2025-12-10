@@ -19,14 +19,14 @@ export default function ReviewsLoopSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="py-16 bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-slate-950 dark:to-celadon-950"
+      className="py-16 bg-linear-to-br from-celadon-50 to-icy-aqua-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900 dark:text-white"
+          className="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900"
         >
           What Our Customers Say
         </motion.h2>
@@ -51,9 +51,9 @@ export default function ReviewsLoopSection() {
               <motion.div
                 key={`top-${review.id}-${idx}`}
                 whileHover={{ scale: 1.05 }}
-                className="flex-shrink-0 min-w-[300px]"
+                className="shrink-0 min-w-[300px]"
               >
-                <div className="h-full bg-white dark:bg-slate-900 rounded-xl p-6 border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 hover:shadow-lg transition-all cursor-pointer">
+                <div className="h-full bg-white rounded-xl p-6 border border-celadon-100 hover:border-celadon-400 hover:shadow-lg transition-all cursor-pointer">
                   {/* Rating */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -69,7 +69,7 @@ export default function ReviewsLoopSection() {
                   </div>
 
                   {/* Comment */}
-                  <p className="text-slate-700 dark:text-slate-300 mb-4 text-sm italic">
+                  <p className="text-slate-700 mb-4 text-sm italic">
                     "{review.comment}"
                   </p>
 
@@ -83,10 +83,10 @@ export default function ReviewsLoopSection() {
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     <div>
-                      <p className="font-semibold text-slate-900 dark:text-white text-sm">
+                      <p className="font-semibold text-slate-900 text-sm">
                         {review.name}
                       </p>
-                      <p className="text-xs text-celadon-600 dark:text-celadon-400">
+                      <p className="text-xs text-celadon-600">
                         Verified Customer
                       </p>
                     </div>
@@ -117,9 +117,9 @@ export default function ReviewsLoopSection() {
               <motion.div
                 key={`bottom-${review.id}-${idx}`}
                 whileHover={{ scale: 1.05 }}
-                className="flex-shrink-0 min-w-[300px]"
+                className="shrink-0 min-w-[300px]"
               >
-                <div className="h-full bg-white dark:bg-slate-900 rounded-xl p-6 border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 hover:shadow-lg transition-all cursor-pointer">
+                <div className="h-full bg-white rounded-xl p-6 border border-celadon-100 hover:border-celadon-400 hover:shadow-lg transition-all cursor-pointer">
                   {/* Rating */}
                   <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -135,7 +135,7 @@ export default function ReviewsLoopSection() {
                   </div>
 
                   {/* Comment */}
-                  <p className="text-slate-700 dark:text-slate-300 mb-4 text-sm italic">
+                  <p className="text-slate-700 mb-4 text-sm italic">
                     "{review.comment}"
                   </p>
 
@@ -149,10 +149,10 @@ export default function ReviewsLoopSection() {
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     <div>
-                      <p className="font-semibold text-slate-900 dark:text-white text-sm">
+                      <p className="font-semibold text-slate-900 text-sm">
                         {review.name}
                       </p>
-                      <p className="text-xs text-celadon-600 dark:text-celadon-400">
+                      <p className="text-xs text-celadon-600">
                         Verified Customer
                       </p>
                     </div>

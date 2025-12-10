@@ -64,10 +64,10 @@ export default function DealsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       {/* Hero Section */}
-      <section className="relative py-20 bg-linear-to-br from-cherry-blossom-50 to-cherry-blossom-100 dark:from-cherry-blossom-950 dark:to-cherry-blossom-900">
+      <section className="relative py-20 bg-linear-to-br from-cherry-blossom-50 to-cherry-blossom-100">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-cherry-blossom-500 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-celadon-500 rounded-full blur-3xl" />
@@ -81,13 +81,13 @@ export default function DealsPage() {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-3 mb-6">
-              <Zap className="w-10 h-10 text-cherry-blossom-600 dark:text-cherry-blossom-400" />
-              <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white">
+              <Zap className="w-10 h-10 text-cherry-blossom-600" />
+              <h1 className="text-5xl md:text-6xl font-bold text-slate-900">
                 Lightning Deals
               </h1>
-              <Zap className="w-10 h-10 text-cherry-blossom-600 dark:text-cherry-blossom-400" />
+              <Zap className="w-10 h-10 text-cherry-blossom-600" />
             </div>
-            <p className="text-xl text-slate-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
               Limited time offers on premium dairy products. Save up to{" "}
               {Math.max(...dealProducts.map((p) => p.discount))}% on your
               favorite items!
@@ -114,15 +114,13 @@ export default function DealsPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white/80 dark:bg-slate-900/50 rounded-lg p-6 border border-white/20 dark:border-slate-800/50 backdrop-blur-sm"
+                className="bg-white/80 rounded-lg p-6 border border-white/20 backdrop-blur-sm"
               >
                 <div className="flex items-center gap-4">
                   <stat.icon className="w-10 h-10 text-cherry-blossom-500" />
                   <div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      {stat.label}
-                    </p>
-                    <p className="text-2xl font-bold text-slate-900 dark:text-white">
+                    <p className="text-sm text-slate-600">{stat.label}</p>
+                    <p className="text-2xl font-bold text-slate-900">
                       {stat.value}
                     </p>
                   </div>
@@ -134,7 +132,7 @@ export default function DealsPage() {
       </section>
 
       {/* Top Deals Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -143,10 +141,10 @@ export default function DealsPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">
               Top Deals This Week
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
+            <p className="text-lg text-slate-600">
               Don't miss out on these incredible limited-time offers
             </p>
           </motion.div>
@@ -161,10 +159,10 @@ export default function DealsPage() {
                 viewport={{ once: true }}
                 whileHover={{ y: -15 }}
                 onClick={() => setSelectedProduct(product)}
-                className="group relative bg-white dark:bg-slate-950 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-cherry-blossom-400 dark:hover:border-cherry-blossom-500 transition-all cursor-pointer shadow-md hover:shadow-2xl"
+                className="group relative bg-white rounded-xl overflow-hidden border border-celadon-100 hover:border-cherry-blossom-400 transition-all cursor-pointer shadow-md hover:shadow-2xl"
               >
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                <div className="relative h-56 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -205,13 +203,13 @@ export default function DealsPage() {
                         addToWishlist(wishlistItem);
                       }
                     }}
-                    className="absolute top-4 right-4 p-2 bg-white/90 dark:bg-slate-900/90 rounded-full hover:bg-white dark:hover:bg-slate-900 transition-colors z-10"
+                    className="absolute top-4 right-4 p-2 bg-white/90 rounded-full hover:bg-white transition-colors z-10"
                   >
                     <Heart
                       className={`w-5 h-5 ${
                         isInWishlist(String(product.id))
                           ? "fill-cherry-blossom-500 text-cherry-blossom-500"
-                          : "text-slate-600 dark:text-slate-400"
+                          : "text-slate-600"
                       }`}
                     />
                   </motion.button>
@@ -223,10 +221,10 @@ export default function DealsPage() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <p className="text-xs text-celadon-600 dark:text-celadon-400 font-semibold uppercase tracking-wide">
+                  <p className="text-xs text-celadon-600 font-semibold uppercase tracking-wide">
                     {product.category}
                   </p>
-                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mt-2 line-clamp-2">
+                  <h3 className="text-xl font-semibold text-slate-900 mt-2 line-clamp-2">
                     {product.name}
                   </h3>
 
@@ -244,14 +242,14 @@ export default function DealsPage() {
                         />
                       ))}
                     </div>
-                    <span className="text-xs text-slate-600 dark:text-slate-400">
+                    <span className="text-xs text-slate-600">
                       ({product.reviews})
                     </span>
                   </div>
 
                   {/* Price */}
                   <div className="flex items-center gap-3 mt-4 mb-4">
-                    <span className="text-3xl font-bold text-cherry-blossom-600 dark:text-cherry-blossom-400">
+                    <span className="text-3xl font-bold text-cherry-blossom-600">
                       ${product.discountedPrice.toFixed(2)}
                     </span>
                     <span className="text-lg text-slate-400 line-through">
@@ -272,7 +270,7 @@ export default function DealsPage() {
                         image: product.image,
                       });
                     }}
-                    className="w-full bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                    className="w-full bg-celadon-500 hover:bg-celadon-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                   >
                     <ShoppingCart className="w-4 h-4" />
                     Add to Cart
@@ -294,9 +292,7 @@ export default function DealsPage() {
             viewport={{ once: true }}
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-              <h2 className="text-4xl font-bold text-slate-900 dark:text-white">
-                All Deals
-              </h2>
+              <h2 className="text-4xl font-bold text-slate-900">All Deals</h2>
 
               {/* Sort Dropdown */}
               <div className="flex gap-2">
@@ -316,7 +312,7 @@ export default function DealsPage() {
                     className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                       sortBy === option.value
                         ? "bg-cherry-blossom-500 text-white"
-                        : "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
+                        : "bg-slate-100 text-slate-900 hover:bg-slate-200"
                     }`}
                   >
                     {option.label}
@@ -338,10 +334,10 @@ export default function DealsPage() {
                     transition={{ duration: 0.2 }}
                     whileHover={{ y: -8 }}
                     onClick={() => setSelectedProduct(product)}
-                    className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-cherry-blossom-400 dark:hover:border-cherry-blossom-500 transition-all cursor-pointer"
+                    className="group relative bg-white rounded-xl overflow-hidden border border-celadon-100 hover:border-cherry-blossom-400 transition-all cursor-pointer"
                   >
                     {/* Image */}
-                    <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                    <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50">
                       <Image
                         src={product.image}
                         alt={product.name}
@@ -378,13 +374,13 @@ export default function DealsPage() {
                             addToWishlist(wishlistItem);
                           }
                         }}
-                        className="absolute top-2 right-2 p-1.5 bg-white/90 dark:bg-slate-900/90 rounded-full hover:bg-white dark:hover:bg-slate-900 transition-colors z-10"
+                        className="absolute top-2 right-2 p-1.5 bg-white/90 rounded-full hover:bg-white transition-colors z-10"
                       >
                         <Heart
                           className={`w-4 h-4 ${
                             isInWishlist(String(product.id))
                               ? "fill-cherry-blossom-500 text-cherry-blossom-500"
-                              : "text-slate-600 dark:text-slate-400"
+                              : "text-slate-600"
                           }`}
                         />
                       </motion.button>
@@ -392,16 +388,16 @@ export default function DealsPage() {
 
                     {/* Content */}
                     <div className="p-4">
-                      <p className="text-xs text-celadon-600 dark:text-celadon-400 font-semibold uppercase">
+                      <p className="text-xs text-celadon-600 font-semibold uppercase">
                         {product.category}
                       </p>
-                      <h3 className="text-sm font-semibold text-slate-900 dark:text-white mt-1 line-clamp-2">
+                      <h3 className="text-sm font-semibold text-slate-900 mt-1 line-clamp-2">
                         {product.name}
                       </h3>
 
                       {/* Price */}
                       <div className="flex items-center gap-2 mt-2">
-                        <span className="text-lg font-bold text-cherry-blossom-600 dark:text-cherry-blossom-400">
+                        <span className="text-lg font-bold text-cherry-blossom-600">
                           ${product.discountedPrice.toFixed(2)}
                         </span>
                         <span className="text-xs text-slate-400 line-through">
@@ -422,7 +418,7 @@ export default function DealsPage() {
                             image: product.image,
                           });
                         }}
-                        className="w-full mt-3 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer"
+                        className="w-full mt-3 bg-celadon-500 hover:bg-celadon-600 text-white py-2 rounded-lg font-semibold text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer"
                       >
                         <ShoppingCart className="w-3 h-3" />
                         Add to Cart

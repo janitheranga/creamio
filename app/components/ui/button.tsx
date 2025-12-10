@@ -5,21 +5,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/app/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-white dark:ring-offset-slate-950 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celadon-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-celadon-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-celadon-500 text-white hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700",
+          "bg-celadon-500 text-white hover:bg-celadon-600",
         destructive:
-          "bg-cherry-blossom-500 text-white hover:bg-cherry-blossom-600 dark:bg-cherry-blossom-600 dark:hover:bg-cherry-blossom-700",
+          "bg-cherry-blossom-500 text-white hover:bg-cherry-blossom-600",
         outline:
-          "border border-celadon-300 bg-white hover:bg-celadon-50 dark:border-celadon-700 dark:bg-slate-950 dark:hover:bg-slate-900 text-celadon-600 dark:text-celadon-400",
+          "border border-celadon-300 bg-white hover:bg-celadon-50 text-celadon-600",
         secondary:
-          "bg-icy-aqua-100 text-icy-aqua-900 hover:bg-icy-aqua-200 dark:bg-icy-aqua-900 dark:text-icy-aqua-100 dark:hover:bg-icy-aqua-800",
+          "bg-icy-aqua-100 text-icy-aqua-900 hover:bg-icy-aqua-200",
         ghost:
-          "hover:bg-celadon-100 dark:hover:bg-celadon-900 text-celadon-700 dark:text-celadon-300",
-        link: "text-celadon-500 underline-offset-4 hover:underline dark:text-celadon-400",
+          "hover:bg-celadon-100 text-celadon-700",
+        link: "text-celadon-500 underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",

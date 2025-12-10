@@ -69,15 +69,30 @@ export default function FlashSalesPage() {
       flashSaleProducts.length
   );
 
+  const statColors = {
+    "cherry-blossom": {
+      bg: "bg-cherry-blossom-100",
+      text: "text-cherry-blossom-600",
+    },
+    celadon: {
+      bg: "bg-celadon-100",
+      text: "text-celadon-600",
+    },
+    "icy-aqua": {
+      bg: "bg-icy-aqua-100",
+      text: "text-icy-aqua-600",
+    },
+  } as const;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       {/* Hero Section */}
-      <section className="relative py-24 bg-linear-to-br from-cherry-blossom-100 via-cherry-blossom-50 to-white dark:from-cherry-blossom-950 dark:via-cherry-blossom-900 dark:to-slate-950 overflow-hidden">
+      <section className="relative py-24 bg-linear-to-br from-cherry-blossom-100 via-cherry-blossom-50 to-white overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 opacity-20">
           <motion.div
@@ -115,10 +130,10 @@ export default function FlashSalesPage() {
               <Zap className="w-6 h-6 fill-white" />
             </motion.div>
 
-            <h1 className="text-6xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6">
+            <h1 className="text-6xl md:text-7xl font-bold text-slate-900 mb-6">
               Flash Sales
             </h1>
-            <p className="text-2xl text-slate-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-2xl text-slate-700 max-w-3xl mx-auto leading-relaxed mb-8">
               Unbeatable prices on premium dairy products. Limited stock
               available!
             </p>
@@ -128,14 +143,14 @@ export default function FlashSalesPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-3 bg-white dark:bg-slate-900 px-8 py-4 rounded-2xl shadow-xl border-2 border-cherry-blossom-300 dark:border-cherry-blossom-700"
+              className="inline-flex items-center gap-3 bg-white px-8 py-4 rounded-2xl shadow-xl border-2 border-cherry-blossom-300"
             >
-              <Timer className="w-6 h-6 text-cherry-blossom-600 dark:text-cherry-blossom-400" />
+              <Timer className="w-6 h-6 text-cherry-blossom-600" />
               <div className="text-left">
-                <p className="text-xs text-slate-600 dark:text-slate-400 uppercase font-semibold">
+                <p className="text-xs text-slate-600 uppercase font-semibold">
                   Sale Ends In
                 </p>
-                <div className="flex gap-2 text-2xl font-bold text-slate-900 dark:text-white">
+                <div className="flex gap-2 text-2xl font-bold text-slate-900">
                   <span>23:59:45</span>
                 </div>
               </div>
@@ -149,48 +164,49 @@ export default function FlashSalesPage() {
                 icon: Percent,
                 label: "Max Discount",
                 value: `${maxDiscount}%`,
-                color: "cherry-blossom",
+                color: "cherry-blossom" as const,
               },
               {
                 icon: Package,
                 label: "Products on Sale",
                 value: flashSaleProducts.length,
-                color: "celadon",
+                color: "celadon" as const,
               },
               {
                 icon: TrendingUp,
                 label: "Average Savings",
                 value: `${avgDiscount}%`,
-                color: "icy-aqua",
+                color: "icy-aqua" as const,
               },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white/90 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg"
-              >
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`w-14 h-14 bg-${stat.color}-100 dark:bg-${stat.color}-900/30 rounded-xl flex items-center justify-center`}
-                  >
-                    <stat.icon
-                      className={`w-7 h-7 text-${stat.color}-600 dark:text-${stat.color}-400`}
-                    />
+            ].map((stat, idx) => {
+              const colors = statColors[stat.color];
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 + idx * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 shadow-lg"
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`w-14 h-14 ${colors.bg} rounded-xl flex items-center justify-center`}
+                    >
+                      <stat.icon className={`w-7 h-7 ${colors.text}`} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-600 font-medium">
+                        {stat.label}
+                      </p>
+                      <p className="text-3xl font-bold text-slate-900">
+                        {stat.value}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-                      {stat.label}
-                    </p>
-                    <p className="text-3xl font-bold text-slate-900 dark:text-white">
-                      {stat.value}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -209,7 +225,7 @@ export default function FlashSalesPage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
               {/* Category Filter */}
               <div>
-                <p className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-3">
+                <p className="text-sm font-semibold text-slate-600 mb-3">
                   Filter by Category
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -222,7 +238,7 @@ export default function FlashSalesPage() {
                       className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${
                         filterCategory === cat
                           ? "bg-cherry-blossom-500 text-white shadow-md"
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
+                          : "bg-slate-100 text-slate-900 hover:bg-slate-200"
                       }`}
                     >
                       {cat}
@@ -233,7 +249,7 @@ export default function FlashSalesPage() {
 
               {/* Sort Options */}
               <div>
-                <p className="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-3">
+                <p className="text-sm font-semibold text-slate-600 mb-3">
                   Sort by
                 </p>
                 <div className="flex gap-2">
@@ -252,8 +268,8 @@ export default function FlashSalesPage() {
                       }}
                       className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                         sortBy === option.value
-                          ? "bg-celadon-500 dark:bg-celadon-600 text-white shadow-md"
-                          : "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
+                          ? "bg-celadon-500 text-white shadow-md"
+                          : "bg-slate-100 text-slate-900 hover:bg-slate-200"
                       }`}
                     >
                       {option.label}
@@ -277,10 +293,10 @@ export default function FlashSalesPage() {
                   transition={{ duration: 0.2 }}
                   whileHover={{ y: -10 }}
                   onClick={() => setSelectedProduct(product)}
-                  className="group relative bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-cherry-blossom-400 dark:hover:border-cherry-blossom-500 transition-all cursor-pointer shadow-md hover:shadow-xl"
+                  className="group relative bg-white rounded-2xl overflow-hidden border border-celadon-100 hover:border-cherry-blossom-400 transition-all cursor-pointer shadow-md hover:shadow-xl"
                 >
                   {/* Image */}
-                  <div className="relative h-48 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                  <div className="relative h-48 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50">
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -321,13 +337,13 @@ export default function FlashSalesPage() {
                           addToWishlist(wishlistItem);
                         }
                       }}
-                      className="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-full hover:bg-white dark:hover:bg-slate-900 transition-colors z-10 shadow-md"
+                      className="absolute top-3 right-3 p-2 bg-white/90 rounded-full hover:bg-white transition-colors z-10 shadow-md"
                     >
                       <Heart
                         className={`w-5 h-5 ${
                           isInWishlist(String(product.id))
                             ? "fill-cherry-blossom-500 text-cherry-blossom-500"
-                            : "text-slate-600 dark:text-slate-400"
+                            : "text-slate-600"
                         }`}
                       />
                     </motion.button>
@@ -340,10 +356,10 @@ export default function FlashSalesPage() {
 
                   {/* Content */}
                   <div className="p-5">
-                    <p className="text-xs text-celadon-600 dark:text-celadon-400 font-semibold uppercase tracking-wide">
+                    <p className="text-xs text-celadon-600 font-semibold uppercase tracking-wide">
                       {product.category}
                     </p>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mt-2 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-slate-900 mt-2 line-clamp-2">
                       {product.name}
                     </h3>
 
@@ -361,14 +377,14 @@ export default function FlashSalesPage() {
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-slate-600 dark:text-slate-400">
+                      <span className="text-xs text-slate-600">
                         ({product.reviews})
                       </span>
                     </div>
 
                     {/* Price */}
                     <div className="flex items-center gap-2 mt-3 mb-4">
-                      <span className="text-2xl font-bold text-cherry-blossom-600 dark:text-cherry-blossom-400">
+                      <span className="text-2xl font-bold text-cherry-blossom-600">
                         ${product.discountedPrice.toFixed(2)}
                       </span>
                       <span className="text-sm text-slate-400 line-through">
@@ -389,7 +405,7 @@ export default function FlashSalesPage() {
                           image: product.image,
                         });
                       }}
-                      className="w-full bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                      className="w-full bg-celadon-500 hover:bg-celadon-600 text-white py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                     >
                       <ShoppingCart className="w-4 h-4" />
                       Add to Cart
@@ -407,20 +423,18 @@ export default function FlashSalesPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-16"
             >
-              <Package className="w-20 h-20 mx-auto mb-4 text-slate-300 dark:text-slate-700" />
-              <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2">
+              <Package className="w-20 h-20 mx-auto mb-4 text-slate-300" />
+              <h3 className="text-2xl font-semibold text-slate-900 mb-2">
                 No products found
               </h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Try adjusting your filters
-              </p>
+              <p className="text-slate-600">Try adjusting your filters</p>
             </motion.div>
           )}
         </div>
       </section>
 
       {/* Why Shop Flash Sales Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -429,10 +443,10 @@ export default function FlashSalesPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">
               Why Shop Our Flash Sales?
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Get the best deals on premium dairy products
             </p>
           </motion.div>
@@ -465,15 +479,15 @@ export default function FlashSalesPage() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-slate-950 rounded-2xl p-8 border border-celadon-100 dark:border-celadon-800 text-center"
+                className="bg-white rounded-2xl p-8 border border-celadon-100 text-center"
               >
-                <div className="w-16 h-16 bg-cherry-blossom-100 dark:bg-cherry-blossom-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-cherry-blossom-600 dark:text-cherry-blossom-400" />
+                <div className="w-16 h-16 bg-cherry-blossom-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-8 h-8 text-cherry-blossom-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
+                <h3 className="text-xl font-semibold text-slate-900 mb-3">
                   {item.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>

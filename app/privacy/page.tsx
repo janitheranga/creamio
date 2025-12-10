@@ -8,7 +8,7 @@ export default function PrivacyPolicyPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
@@ -17,22 +17,20 @@ export default function PrivacyPolicyPage() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h1 className="text-5xl font-bold text-slate-900 mb-4">
             Privacy Policy
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            Last updated: December 2024
-          </p>
+          <p className="text-lg text-slate-600">Last updated: December 2024</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-8 text-slate-700 dark:text-slate-300"
+          className="space-y-8 text-slate-700"
         >
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               1. Introduction
             </h2>
             <p>
@@ -44,7 +42,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               2. Information Collection and Use
             </h2>
             <p>
@@ -53,7 +51,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <div className="mt-4 space-y-4">
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 className="font-semibold text-slate-900 mb-2">
                   Personal Data:
                 </h3>
                 <ul className="list-disc list-inside space-y-1">
@@ -65,7 +63,7 @@ export default function PrivacyPolicyPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 className="font-semibold text-slate-900 mb-2">
                   Usage Data:
                 </h3>
                 <p>
@@ -81,7 +79,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               3. Use of Data
             </h2>
             <p>Creamio uses the collected data for various purposes:</p>
@@ -103,7 +101,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               4. Security of Data
             </h2>
             <p>
@@ -116,7 +114,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               5. Changes to This Privacy Policy
             </h2>
             <p>
@@ -128,7 +126,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               6. Your Rights
             </h2>
             <p>You have the right to:</p>
@@ -141,7 +139,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               7. Contact Us
             </h2>
             <p>

@@ -74,7 +74,7 @@ export default function HeroSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-[600px] bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-slate-950 dark:to-celadon-950 overflow-hidden"
+      className="min-h-[600px] bg-linear-to-br from-celadon-50 to-icy-aqua-50 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center py-16">
@@ -95,21 +95,21 @@ export default function HeroSection() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
                 Premium Dairy
-                <span className="bg-gradient-to-r from-celadon-500 to-icy-aqua-500 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-celadon-500 to-icy-aqua-500 bg-clip-text text-transparent">
                   {" "}
                   Products
                 </span>
               </h1>
-              <p className="text-lg text-slate-600 dark:text-slate-300">
+              <p className="text-lg text-slate-600">
                 Fresh, nutritious, and delicious dairy products delivered to
                 your doorstep.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-celadon-500 to-icy-aqua-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-linear-to-r from-celadon-500 to-icy-aqua-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all cursor-pointer"
               >
                 <ShoppingCart className="w-5 h-5" />
                 Shop Now
@@ -155,7 +155,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.1, x: -5 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-900/80 p-2 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full hover:bg-white transition-colors cursor-pointer"
               >
                 <ChevronLeft className="w-6 h-6" />
               </motion.button>
@@ -163,7 +163,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.1, x: 5 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-900/80 p-2 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full hover:bg-white transition-colors cursor-pointer"
               >
                 <ChevronRight className="w-6 h-6" />
               </motion.button>

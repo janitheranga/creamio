@@ -22,7 +22,7 @@ export default function NotificationBanner() {
 
   return (
     <div
-      className="bg-gradient-to-r from-celadon-500 to-icy-aqua-500 dark:from-celadon-700 dark:to-icy-aqua-700 py-3 px-4 text-white"
+      className="bg-linear-to-r from-celadon-500 to-icy-aqua-500 py-3 px-4 text-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

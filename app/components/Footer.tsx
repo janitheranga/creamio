@@ -53,7 +53,7 @@ export default function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="bg-slate-900 dark:bg-black text-white"
+      className="bg-slate-900 text-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Newsletter */}
@@ -66,7 +66,7 @@ export default function Footer() {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
               {/* Text Content */}
-              <div className="text-center lg:text-left flex-shrink-0">
+              <div className="text-center lg:text-left shrink-0">
                 <h3 className="text-xl font-semibold mb-2 text-white">
                   Subscribe to Our Newsletter
                 </h3>
@@ -128,7 +128,7 @@ export default function Footer() {
               href="/"
               className="flex items-center gap-2 mb-4 cursor-pointer"
             >
-              <span className="text-3xl font-bold bg-gradient-to-r from-celadon-400 to-icy-aqua-400 bg-clip-text text-transparent">
+              <span className="text-3xl font-bold bg-linear-to-r from-celadon-400 to-icy-aqua-400 bg-clip-text text-transparent">
                 🥛
               </span>
               <span className="text-2xl font-bold text-celadon-400">
@@ -214,7 +214,12 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             className="flex gap-4"
           >
-            {[FaFacebook, FaSquareXTwitter, FaSquareInstagram, AiFillTikTok].map((SocialIcon, idx) => (
+            {[
+              FaFacebook,
+              FaSquareXTwitter,
+              FaSquareInstagram,
+              AiFillTikTok,
+            ].map((SocialIcon, idx) => (
               <motion.a
                 key={idx}
                 whileHover={{ scale: 1.2 }}

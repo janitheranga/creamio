@@ -58,7 +58,7 @@ export default function BottomNavbar() {
   ];
 
   return (
-    <div className="bg-white dark:bg-slate-950 border-b border-celadon-100 dark:border-celadon-800 sticky top-16 z-40">
+    <div className="bg-white border-b border-celadon-100 sticky top-16 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           {/* Left: Shop by Categories Dropdown */}
@@ -85,7 +85,7 @@ export default function BottomNavbar() {
                       placeholder="Search categories..."
                       value={categorySearch}
                       onChange={(e) => setCategorySearch(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-celadon-50 dark:bg-slate-900 border border-celadon-200 dark:border-celadon-800 text-sm focus:outline-none focus:ring-2 focus:ring-celadon-500"
+                      className="w-full px-3 py-2 rounded-lg bg-celadon-50 border border-celadon-200 text-sm focus:outline-none focus:ring-2 focus:ring-celadon-500"
                     />
                     <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-celadon-500" />
                   </div>
@@ -131,21 +131,21 @@ export default function BottomNavbar() {
                       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors cursor-pointer group ${
                         isActive
                           ? "bg-celadon-500 text-white"
-                          : "hover:bg-celadon-100 dark:hover:bg-celadon-900"
+                          : "hover:bg-celadon-100"
                       }`}
                     >
                       <item.icon
                         className={`w-4 h-4 transition-colors ${
                           isActive
                             ? "text-white"
-                            : "text-slate-600 dark:text-slate-400 group-hover:text-celadon-600 dark:group-hover:text-celadon-400"
+                            : "text-slate-600 group-hover:text-celadon-600"
                         }`}
                       />
                       <span
                         className={`text-sm font-medium transition-colors ${
                           isActive
                             ? "text-white"
-                            : "text-slate-700 dark:text-slate-300 group-hover:text-celadon-600 dark:group-hover:text-celadon-400"
+                            : "text-slate-700 group-hover:text-celadon-600"
                         }`}
                       >
                         {item.name}
@@ -165,9 +165,18 @@ export default function BottomNavbar() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 transition-colors cursor-pointer"
                 >
-                  <span className="text-lg">{<Image src={selectedLanguage.flag} alt={selectedLanguage.name} width={24} height={24} />}</span>
+                  <span className="text-lg">
+                    {
+                      <Image
+                        src={selectedLanguage.flag}
+                        alt={selectedLanguage.name}
+                        width={24}
+                        height={24}
+                      />
+                    }
+                  </span>
                   <span className="text-sm font-medium hidden sm:inline">
                     {selectedLanguage.code.toUpperCase()}
                   </span>
@@ -182,7 +191,7 @@ export default function BottomNavbar() {
                       placeholder="Search language..."
                       value={languageSearch}
                       onChange={(e) => setLanguageSearch(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-celadon-50 dark:bg-slate-900 border border-celadon-200 dark:border-celadon-800 text-sm focus:outline-none focus:ring-2 focus:ring-celadon-500"
+                      className="w-full px-3 py-2 rounded-lg bg-celadon-50 border border-celadon-200 text-sm focus:outline-none focus:ring-2 focus:ring-celadon-500"
                     />
                     <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-celadon-500" />
                   </div>
@@ -194,7 +203,15 @@ export default function BottomNavbar() {
                     onClick={() => setSelectedLanguage(lang)}
                     className="cursor-pointer"
                   >
-                    {<Image src={lang.flag} alt={lang.name} width={24} height={24} /> }<span className="pl-2">{lang.name}</span>
+                    {
+                      <Image
+                        src={lang.flag}
+                        alt={lang.name}
+                        width={24}
+                        height={24}
+                      />
+                    }
+                    <span className="pl-2">{lang.name}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -206,7 +223,7 @@ export default function BottomNavbar() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 transition-colors cursor-pointer"
                 >
                   <span className="text-lg font-bold">
                     {<selectedCurrency.symbol className="w-4 h-4" />}
@@ -225,7 +242,7 @@ export default function BottomNavbar() {
                       placeholder="Search currency..."
                       value={currencySearch}
                       onChange={(e) => setCurrencySearch(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-celadon-50 dark:bg-slate-900 border border-celadon-200 dark:border-celadon-800 text-sm focus:outline-none focus:ring-2 focus:ring-celadon-500"
+                      className="w-full px-3 py-2 rounded-lg bg-celadon-50 border border-celadon-200 text-sm focus:outline-none focus:ring-2 focus:ring-celadon-500"
                     />
                     <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-celadon-500" />
                   </div>
@@ -237,7 +254,8 @@ export default function BottomNavbar() {
                     onClick={() => setSelectedCurrency(curr)}
                     className="cursor-pointer"
                   >
-                    {<curr.symbol className="w-4 h-4" />} {curr.code} - {curr.name}
+                    {<curr.symbol className="w-4 h-4" />} {curr.code} -{" "}
+                    {curr.name}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -250,9 +268,9 @@ export default function BottomNavbar() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer"
+                    className="p-2 rounded-lg hover:bg-celadon-100 transition-colors cursor-pointer"
                   >
-                    <Layers className="w-5 h-5 text-slate-700 dark:text-slate-300" />
+                    <Layers className="w-5 h-5 text-slate-700" />
                   </motion.button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
@@ -265,9 +283,7 @@ export default function BottomNavbar() {
                         <Link
                           href={item.href}
                           className={`flex items-center gap-2 cursor-pointer ${
-                            isActive
-                              ? "bg-celadon-100 dark:bg-celadon-900 font-semibold"
-                              : ""
+                            isActive ? "bg-celadon-100 font-semibold" : ""
                           }`}
                         >
                           <item.icon className="w-4 h-4" />

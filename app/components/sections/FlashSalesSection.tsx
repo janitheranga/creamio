@@ -27,7 +27,7 @@ export default function FlashSalesSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="py-16 bg-white dark:bg-slate-950"
+      className="py-16 bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -39,18 +39,18 @@ export default function FlashSalesSection() {
           >
             <div className="flex items-center gap-3">
               <Zap className="w-8 h-8 text-cherry-blossom-500" />
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
                 Flash Sales
               </h2>
             </div>
-            <p className="text-slate-600 dark:text-slate-400 mt-2">
+            <p className="text-slate-600 mt-2">
               Limited time offers on selected products
             </p>
           </motion.div>
           <motion.a
             whileHover={{ x: 5 }}
             href="/flash-sales"
-            className="text-celadon-600 dark:text-celadon-400 font-semibold hover:text-celadon-700 cursor-pointer"
+            className="text-celadon-600 font-semibold hover:text-celadon-700 cursor-pointer"
           >
             View All
           </motion.a>
@@ -66,10 +66,10 @@ export default function FlashSalesSection() {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               whileHover={{ y: -10 }}
               onClick={() => setSelectedProduct(product)}
-              className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all cursor-pointer"
+              className="group relative bg-white rounded-xl overflow-hidden border border-celadon-100 hover:border-celadon-400 transition-all cursor-pointer"
             >
               {/* Image */}
-              <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+              <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -104,14 +104,14 @@ export default function FlashSalesSection() {
                         addToWishlist(wishlistItem);
                       }
                     }}
-                    className="p-2 bg-white/90 dark:bg-slate-900/90 rounded-full hover:bg-white dark:hover:bg-slate-900 transition-colors cursor-pointer"
+                    className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors cursor-pointer"
                     aria-label="Add to wishlist"
                   >
                     <Heart
                       className={`w-5 h-5 ${
                         isInWishlist(String(product.id))
                           ? "fill-cherry-blossom-500 text-cherry-blossom-500"
-                          : "text-slate-600 dark:text-slate-400"
+                          : "text-slate-600"
                       }`}
                     />
                   </motion.button>
@@ -134,10 +134,10 @@ export default function FlashSalesSection() {
 
               {/* Content */}
               <div className="p-4">
-                <p className="text-xs text-celadon-600 dark:text-celadon-400 font-semibold uppercase">
+                <p className="text-xs text-celadon-600 font-semibold uppercase">
                   {product.category}
                 </p>
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mt-2 line-clamp-2">
+                <h3 className="text-lg font-semibold text-slate-900 mt-2 line-clamp-2">
                   {product.name}
                 </h3>
 
@@ -155,14 +155,14 @@ export default function FlashSalesSection() {
                       />
                     ))}
                   </div>
-                  <span className="text-xs text-slate-600 dark:text-slate-400">
+                  <span className="text-xs text-slate-600">
                     ({product.reviews})
                   </span>
                 </div>
 
                 {/* Price */}
                 <div className="flex items-center gap-2 mt-3">
-                  <span className="text-2xl font-bold text-celadon-600 dark:text-celadon-400">
+                  <span className="text-2xl font-bold text-celadon-600">
                     ${product.discountedPrice.toFixed(2)}
                   </span>
                   <span className="text-sm text-slate-400 line-through">
@@ -191,7 +191,7 @@ export default function FlashSalesSection() {
                       image: product.image,
                     });
                   }}
-                  className="w-full mt-4 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full mt-4 bg-celadon-500 hover:bg-celadon-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   Add to Cart

@@ -92,7 +92,7 @@ export default function ProductsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -104,15 +104,11 @@ export default function ProductsPage() {
             className="lg:col-span-1"
           >
             <div className="sticky top-24 space-y-6">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Filters
-              </h2>
+              <h2 className="text-2xl font-bold text-slate-900">Filters</h2>
 
               {/* Category Filter */}
-              <div className="border-b border-celadon-200 dark:border-celadon-800 pb-4">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
-                  Category
-                </h3>
+              <div className="border-b border-celadon-200 pb-4">
+                <h3 className="font-semibold text-slate-900 mb-3">Category</h3>
                 <div className="space-y-2">
                   {categories.map((cat) => (
                     <motion.label
@@ -137,17 +133,15 @@ export default function ProductsPage() {
                         }}
                         className="w-4 h-4 text-celadon-500 rounded cursor-pointer"
                       />
-                      <span className="text-slate-700 dark:text-slate-300 text-sm">
-                        {cat.name}
-                      </span>
+                      <span className="text-slate-700 text-sm">{cat.name}</span>
                     </motion.label>
                   ))}
                 </div>
               </div>
 
               {/* Price Range Filter */}
-              <div className="border-b border-celadon-200 dark:border-celadon-800 pb-4">
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              <div className="border-b border-celadon-200 pb-4">
+                <h3 className="font-semibold text-slate-900 mb-3">
                   Price Range
                 </h3>
                 <div className="space-y-2">
@@ -161,7 +155,7 @@ export default function ProductsPage() {
                     }
                     className="w-full"
                   />
-                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                  <div className="flex justify-between text-sm text-slate-600">
                     <span>${priceRange[0].toFixed(2)}</span>
                     <span>${priceRange[1].toFixed(2)}</span>
                   </div>
@@ -169,7 +163,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Stock Filter */}
-              <div className="border-b border-celadon-200 dark:border-celadon-800 pb-4">
+              <div className="border-b border-celadon-200 pb-4">
                 <motion.label
                   whileHover={{ x: 5 }}
                   className="flex items-center gap-2 cursor-pointer"
@@ -180,9 +174,7 @@ export default function ProductsPage() {
                     onChange={(e) => setInStock(e.target.checked)}
                     className="w-4 h-4 text-celadon-500 rounded cursor-pointer"
                   />
-                  <span className="text-slate-700 dark:text-slate-300 text-sm">
-                    In Stock Only
-                  </span>
+                  <span className="text-slate-700 text-sm">In Stock Only</span>
                 </motion.label>
               </div>
             </div>
@@ -198,7 +190,7 @@ export default function ProductsPage() {
             {/* Hero Section */}
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="relative h-64 rounded-2xl overflow-hidden mb-8 bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/30 dark:to-icy-aqua-900/30"
+              className="relative h-64 rounded-2xl overflow-hidden mb-8 bg-linear-to-br from-celadon-50 to-icy-aqua-50"
             >
               <Image
                 src="/images/products/Artisan_Cheese.jpg"
@@ -236,7 +228,7 @@ export default function ProductsPage() {
                     className={`px-4 py-2 rounded-lg font-semibold transition-all cursor-pointer ${
                       layout === option.id
                         ? "bg-celadon-500 text-white"
-                        : "bg-celadon-100 dark:bg-celadon-900 text-celadon-700 dark:text-celadon-300 hover:bg-celadon-200 dark:hover:bg-celadon-800"
+                        : "bg-celadon-100 text-celadon-700 hover:bg-celadon-200"
                     }`}
                   >
                     <option.icon />
@@ -251,7 +243,7 @@ export default function ProductsPage() {
                   <DropdownMenuTrigger asChild>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
-                      className="px-4 py-2 rounded-lg bg-celadon-100 dark:bg-celadon-900 text-celadon-700 dark:text-celadon-300 font-semibold hover:bg-celadon-200 dark:hover:bg-celadon-800 transition-all cursor-pointer"
+                      className="px-4 py-2 rounded-lg bg-celadon-100 text-celadon-700 font-semibold hover:bg-celadon-200 transition-all cursor-pointer"
                     >
                       Show: {displayCount}
                     </motion.button>
@@ -276,7 +268,7 @@ export default function ProductsPage() {
                   <DropdownMenuTrigger asChild>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
-                      className="px-4 py-2 rounded-lg bg-celadon-100 dark:bg-celadon-900 text-celadon-700 dark:text-celadon-300 font-semibold hover:bg-celadon-200 dark:hover:bg-celadon-800 transition-all cursor-pointer"
+                      className="px-4 py-2 rounded-lg bg-celadon-100 text-celadon-700 font-semibold hover:bg-celadon-200 transition-all cursor-pointer"
                     >
                       Sort: {sortBy}
                     </motion.button>
@@ -313,10 +305,10 @@ export default function ProductsPage() {
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   whileHover={{ y: -10 }}
                   onClick={() => setSelectedProduct(product)}
-                  className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all cursor-pointer"
+                  className="group relative bg-white rounded-xl overflow-hidden border border-celadon-100 hover:border-celadon-400 transition-all cursor-pointer"
                 >
                   {/* Image */}
-                  <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                  <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50">
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -347,14 +339,14 @@ export default function ProductsPage() {
                           addToWishlist(wishlistItem);
                         }
                       }}
-                      className="absolute top-3 left-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-full hover:bg-white dark:hover:bg-slate-900 transition-colors cursor-pointer z-10"
+                      className="absolute top-3 left-3 p-2 bg-white/90 rounded-full hover:bg-white transition-colors cursor-pointer z-10"
                       aria-label="Add to wishlist"
                     >
                       <Heart
                         className={`w-5 h-5 ${
                           isInWishlist(String(product.id))
                             ? "fill-cherry-blossom-500 text-cherry-blossom-500"
-                            : "text-slate-600 dark:text-slate-400"
+                            : "text-slate-600"
                         }`}
                       />
                     </motion.button>
@@ -365,10 +357,10 @@ export default function ProductsPage() {
 
                   {/* Content */}
                   <div className="p-4">
-                    <p className="text-xs text-celadon-600 dark:text-celadon-400 font-semibold uppercase">
+                    <p className="text-xs text-celadon-600 font-semibold uppercase">
                       {product.category}
                     </p>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mt-2 line-clamp-2">
+                    <h3 className="text-lg font-semibold text-slate-900 mt-2 line-clamp-2">
                       {product.name}
                     </h3>
 
@@ -386,14 +378,14 @@ export default function ProductsPage() {
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-slate-600 dark:text-slate-400">
+                      <span className="text-xs text-slate-600">
                         ({product.reviews})
                       </span>
                     </div>
 
                     {/* Price */}
                     <div className="flex items-center gap-2 mt-3">
-                      <span className="text-2xl font-bold text-celadon-600 dark:text-celadon-400">
+                      <span className="text-2xl font-bold text-celadon-600">
                         ${product.discountedPrice.toFixed(2)}
                       </span>
                       <span className="text-sm text-slate-400 line-through">
@@ -415,7 +407,7 @@ export default function ProductsPage() {
                             image: product.image,
                           });
                         }}
-                        className="w-[95%] mt-4 bg-celadon-500 hover:bg-celadon-600 dark:bg-celadon-600 dark:hover:bg-celadon-700 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                        className="w-[95%] mt-4 bg-celadon-500 hover:bg-celadon-600 text-white py-2 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                       >
                         <ShoppingCart className="w-4 h-4" />
                         Add to Cart
@@ -428,7 +420,7 @@ export default function ProductsPage() {
 
             {filteredProducts.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-slate-600 dark:text-slate-400 text-lg">
+                <p className="text-slate-600 text-lg">
                   No products found. Try adjusting your filters.
                 </p>
               </div>

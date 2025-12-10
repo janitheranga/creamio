@@ -52,10 +52,10 @@ export default function AboutPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       {/* Hero Section */}
-      <section className="relative py-20 bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-950 dark:to-icy-aqua-950">
+      <section className="relative py-20 bg-linear-to-br from-celadon-50 to-icy-aqua-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -63,10 +63,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
               About Creamio
             </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Your trusted source for premium dairy products since 2009. We're
               passionate about delivering farm-fresh quality to your doorstep.
             </p>
@@ -84,10 +84,10 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">
+              <h2 className="text-4xl font-bold text-slate-900 mb-6">
                 Our Story
               </h2>
-              <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              <div className="space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Founded in 2009, Creamio began with a simple mission: to make
                   premium dairy products accessible to everyone. What started as
@@ -132,7 +132,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-celadon-500 dark:bg-celadon-900">
+      <section className="py-16 bg-celadon-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, idx) => (
@@ -165,10 +165,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">
               Our Values
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </motion.div>
@@ -182,15 +182,15 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="bg-white dark:bg-slate-900 rounded-xl p-6 border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all"
+                className="bg-white rounded-xl p-6 border border-celadon-100 hover:border-celadon-400 transition-all"
               >
-                <div className="w-12 h-12 bg-celadon-100 dark:bg-celadon-900/30 rounded-lg flex items-center justify-center mb-4">
-                  <value.icon className="w-6 h-6 text-celadon-600 dark:text-celadon-400" />
+                <div className="w-12 h-12 bg-celadon-100 rounded-lg flex items-center justify-center mb-4">
+                  <value.icon className="w-6 h-6 text-celadon-600" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">
                   {value.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -200,7 +200,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-900">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,10 +209,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">
               Meet Our Team
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
               The passionate people behind Creamio
             </p>
           </motion.div>
@@ -222,20 +222,17 @@ export default function AboutPage() {
               {
                 name: "Sarah Johnson",
                 role: "Founder & CEO",
-                image:
-                  "/images/reviews/Review_Sarah_Johnson.jpg",
+                image: "/images/reviews/Review_Sarah_Johnson.jpg",
               },
               {
                 name: "Michael Chen",
                 role: "Head of Operations",
-                image:
-                  "/images/reviews/Review_Michael_Chen.jpg",
+                image: "/images/reviews/Review_Michael_Chen.jpg",
               },
               {
                 name: "Emily Rodriguez",
                 role: "Quality Assurance Lead",
-                image:
-                  "/images/reviews/Review_Emily_Rodriguez.jpg",
+                image: "/images/reviews/Review_Emily_Rodriguez.jpg",
               },
             ].map((member, idx) => (
               <motion.div
@@ -245,7 +242,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="bg-white dark:bg-slate-950 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all"
+                className="bg-white rounded-xl overflow-hidden border border-celadon-100 hover:border-celadon-400 transition-all"
               >
                 <div className="relative h-64 overflow-hidden">
                   <Image
@@ -256,12 +253,10 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-1">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-celadon-600 dark:text-celadon-400 font-medium">
-                    {member.role}
-                  </p>
+                  <p className="text-celadon-600 font-medium">{member.role}</p>
                 </div>
               </motion.div>
             ))}

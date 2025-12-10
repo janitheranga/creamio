@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/app/lib/theme-provider";
 import Navbar from "@/app/components/TopNavbar";
 import BottomNavbar from "@/app/components/BottomNavbar";
 import Footer from "@/app/components/Footer";
@@ -18,15 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className="antialiased">
-        <ThemeProvider>
-          <NotificationBanner />
-          <Navbar />
-          <BottomNavbar />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <NotificationBanner />
+        <Navbar />
+        <BottomNavbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

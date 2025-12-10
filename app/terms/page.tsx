@@ -8,7 +8,7 @@ export default function TermsAndConditionsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
@@ -17,22 +17,20 @@ export default function TermsAndConditionsPage() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h1 className="text-5xl font-bold text-slate-900 mb-4">
             Terms & Conditions
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            Last updated: December 2024
-          </p>
+          <p className="text-lg text-slate-600">Last updated: December 2024</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-8 text-slate-700 dark:text-slate-300"
+          className="space-y-8 text-slate-700"
         >
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               1. Acceptance of Terms
             </h2>
             <p>
@@ -45,7 +43,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               2. Use License
             </h2>
             <p>
@@ -77,7 +75,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               3. Disclaimer
             </h2>
             <p>
@@ -92,7 +90,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               4. Limitations
             </h2>
             <p>
@@ -104,7 +102,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               5. Accuracy of Materials
             </h2>
             <p>
@@ -117,9 +115,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              6. Links
-            </h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">6. Links</h2>
             <p>
               Creamio has not reviewed all of the sites linked to its website
               and is not responsible for the contents of any such linked site.
@@ -130,7 +126,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               7. Modifications
             </h2>
             <p>
@@ -141,7 +137,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               8. Governing Law
             </h2>
             <p>
@@ -153,7 +149,7 @@ export default function TermsAndConditionsPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">
               9. Contact Information
             </h2>
             <p>

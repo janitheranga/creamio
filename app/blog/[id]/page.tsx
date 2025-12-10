@@ -14,9 +14,9 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">
             Post Not Found
           </h1>
           <Link
@@ -38,13 +38,13 @@ export default function BlogPostPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white dark:bg-slate-950"
+      className="min-h-screen bg-white"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-celadon-600 dark:text-celadon-400 hover:text-celadon-700 dark:hover:text-celadon-300 font-semibold mb-8 cursor-pointer"
+          className="inline-flex items-center gap-2 text-celadon-600 hover:text-celadon-700 font-semibold mb-8 cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Blog
@@ -78,10 +78,10 @@ export default function BlogPostPage() {
               {post.category}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
             {post.title}
           </h1>
-          <div className="flex items-center gap-6 text-slate-600 dark:text-slate-400">
+          <div className="flex items-center gap-6 text-slate-600">
             <div className="flex items-center gap-2">
               <Calendar className="w-5 h-5" />
               <span>{post.date}</span>
@@ -98,15 +98,15 @@ export default function BlogPostPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="prose prose-lg dark:prose-invert max-w-none mb-12"
+          className="prose prose-lg max-w-none mb-12"
         >
-          <div className="bg-celadon-50 dark:bg-celadon-900/20 p-8 rounded-xl border border-celadon-200 dark:border-celadon-800 mb-8">
-            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed m-0">
+          <div className="bg-celadon-50 p-8 rounded-xl border border-celadon-200 mb-8">
+            <p className="text-lg text-slate-700 leading-relaxed m-0">
               {post.excerpt}
             </p>
           </div>
 
-          <div className="space-y-6 text-slate-700 dark:text-slate-300">
+          <div className="space-y-6 text-slate-700">
             <p>{post.content}</p>
             <p>
               Our commitment to quality means every step of our process is
@@ -133,9 +133,9 @@ export default function BlogPostPage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="border-t-2 border-celadon-200 dark:border-celadon-800 pt-12"
+          className="border-t-2 border-celadon-200 pt-12"
         >
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+          <h2 className="text-3xl font-bold text-slate-900 mb-8">
             Related Articles
           </h2>
 
@@ -147,10 +147,10 @@ export default function BlogPostPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all cursor-pointer"
+                className="group relative bg-white rounded-xl overflow-hidden border border-celadon-100 hover:border-celadon-400 transition-all cursor-pointer"
               >
                 {/* Image */}
-                <div className="relative h-40 overflow-hidden bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50">
                   <Image
                     src={related.image}
                     alt={related.title}
@@ -161,19 +161,19 @@ export default function BlogPostPage() {
 
                 {/* Content */}
                 <div className="p-4">
-                  <span className="text-xs font-semibold text-celadon-600 dark:text-celadon-400 uppercase">
+                  <span className="text-xs font-semibold text-celadon-600 uppercase">
                     {related.category}
                   </span>
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white mt-2 line-clamp-2">
+                  <h3 className="text-lg font-semibold text-slate-900 mt-2 line-clamp-2">
                     {related.title}
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 line-clamp-2">
+                  <p className="text-sm text-slate-600 mt-2 line-clamp-2">
                     {related.excerpt}
                   </p>
 
                   <Link
                     href={`/blog/${related.id}`}
-                    className="inline-block mt-4 text-celadon-600 dark:text-celadon-400 font-semibold hover:text-celadon-700 dark:hover:text-celadon-300 transition-colors"
+                    className="inline-block mt-4 text-celadon-600 font-semibold hover:text-celadon-700 transition-colors"
                   >
                     Read More →
                   </Link>
