@@ -55,7 +55,7 @@ export default function BottomNavbar() {
   ];
 
   return (
-    <div className="bg-white dark:bg-slate-950 border-b border-celadon-100 dark:border-celadon-800 sticky top-16 z-30">
+    <div className="bg-white dark:bg-slate-950 border-b border-celadon-100 dark:border-celadon-800 sticky top-16 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           {/* Left: Shop by Categories Dropdown */}
@@ -222,7 +222,7 @@ export default function BottomNavbar() {
             </DropdownMenu>
 
             {/* Mobile Menu for nav items */}
-            <div className="md:hidden z-100">
+            <div className="md:hidden z-50">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <motion.button
