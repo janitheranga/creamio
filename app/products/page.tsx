@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { products, categories } from "@/app/lib/data";
@@ -35,13 +35,25 @@ export default function ProductsPage() {
     (typeof products)[0] | null
   >(null);
   const [layout, setLayout] = useState<"grid" | "2col" | "3col" | "4col">(
-    "grid"
+    "3col"
   );
   const [sortBy, setSortBy] = useState("featured");
   const [displayCount, setDisplayCount] = useState(12);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState([0, 10]);
   const [inStock, setInStock] = useState(true);
+
+  // Force 'grid' layout on mobile screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setLayout("grid");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Filter products
   const filteredProducts = useMemo(() => {
@@ -75,6 +87,9 @@ export default function ProductsPage() {
   }, [selectedCategories, priceRange, inStock, sortBy, displayCount]);
 
   const getGridClass = () => {
+    if (typeof window !== "undefined" && window.innerWidth < 640) {
+      return "grid-cols-1";
+    }
     switch (layout) {
       case "2col":
         return "grid-cols-2";
@@ -212,28 +227,30 @@ export default function ProductsPage() {
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8"
             >
               {/* Layout Options */}
-              <div className="flex gap-2 items-center">
+              <div className="gap-2 items-center hidden sm:flex">
                 <p className="pr-4">View as</p>
-                {[
-                  { id: "grid", icon: MdTableRows },
-                  { id: "2col", icon: TfiLayoutGrid2Alt },
-                  { id: "3col", icon: TfiLayoutGrid3Alt },
-                  { id: "4col", icon: TfiLayoutGrid4Alt },
-                ].map((option) => (
-                  <motion.button
-                    key={option.id}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setLayout(option.id as any)}
-                    className={`px-4 py-2 rounded-lg font-semibold transition-all cursor-pointer ${
-                      layout === option.id
-                        ? "bg-celadon-500 text-white"
-                        : "bg-celadon-100 text-celadon-700 hover:bg-celadon-200"
-                    }`}
-                  >
-                    <option.icon />
-                  </motion.button>
-                ))}
+                <div className="flex gap-2 items-center">
+                  {[
+                    { id: "grid", icon: MdTableRows },
+                    { id: "2col", icon: TfiLayoutGrid2Alt },
+                    { id: "3col", icon: TfiLayoutGrid3Alt },
+                    { id: "4col", icon: TfiLayoutGrid4Alt },
+                  ].map((option) => (
+                    <motion.button
+                      key={option.id}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setLayout(option.id as any)}
+                      className={`px-4 py-2 rounded-lg font-semibold transition-all cursor-pointer ${
+                        layout === option.id
+                          ? "bg-celadon-500 text-white"
+                          : "bg-celadon-100 text-celadon-700 hover:bg-celadon-200"
+                      }`}
+                    >
+                      <option.icon />
+                    </motion.button>
+                  ))}
+                </div>
               </div>
 
               {/* Right Controls */}
@@ -296,7 +313,13 @@ export default function ProductsPage() {
             </motion.div>
 
             {/* Products Grid */}
-            <div className={`grid ${getGridClass()} gap-6`}>
+            <div
+              className={`grid ${getGridClass()} gap-6 
+                grid-cols-1 
+                sm:${getGridClass()} 
+                sm:gap-6 
+                `}
+            >
               {filteredProducts.map((product, idx) => (
                 <motion.div
                   key={product.id}
