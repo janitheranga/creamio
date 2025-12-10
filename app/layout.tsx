@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/app/lib/theme-provider";
-import Navbar from "@/app/components/Navbar";
-import CategoriesSubmenu from "@/app/components/CategoriesSubmenu";
+import Navbar from "@/app/components/TopNavbar";
+import BottomNavbar from "@/app/components/BottomNavbar";
 import Footer from "@/app/components/Footer";
 import NotificationBanner from "@/app/components/NotificationBanner";
 
@@ -23,7 +23,7 @@ export default function RootLayout({
         <ThemeProvider>
           <NotificationBanner />
           <Navbar />
-          <CategoriesSubmenu />
+          <BottomNavbar />
           <main>{children}</main>
           <Footer />
         </ThemeProvider>

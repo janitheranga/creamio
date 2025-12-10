@@ -39,7 +39,7 @@ export default function CategoriesSubmenu() {
         <div className="flex items-center justify-between">
           {/* Categories */}
           <div className="flex items-center gap-6 flex-1">
-            {filteredCategories.slice(0, 4).map((category, idx) => (
+            {filteredCategories.map((category, idx) => (
               <motion.div
                 key={category.id}
                 whileHover={{ scale: 1.05 }}

@@ -9,9 +9,9 @@ export default function ReviewsLoopSection() {
   const [isPausedTop, setIsPausedTop] = useState(false);
   const [isPausedBottom, setIsPausedBottom] = useState(false);
 
-  const repeatedReviews = [...reviews, ...reviews, ...reviews];
-  const topRowReviews = repeatedReviews;
-  const bottomRowReviews = [...repeatedReviews].reverse();
+  const baseReviews = [...reviews, ...reviews];
+  const topRowReviews = [...baseReviews, ...baseReviews]; // 4x for smoother left loop
+  const bottomRowReviews = [...baseReviews, ...baseReviews]; // 4x for a longer right loop
 
   return (
     <motion.section
@@ -37,9 +37,9 @@ export default function ReviewsLoopSection() {
           onMouseLeave={() => setIsPausedTop(false)}
         >
           <motion.div
-            animate={{ x: isPausedTop ? 0 : "-33.33%" }}
+            animate={{ x: isPausedTop ? 0 : ["0%", "-50%"] }}
             transition={{
-              duration: 40,
+              duration: 24,
               repeat: Infinity,
               ease: "linear",
               repeatType: "loop",
@@ -101,9 +101,9 @@ export default function ReviewsLoopSection() {
           onMouseLeave={() => setIsPausedBottom(false)}
         >
           <motion.div
-            animate={{ x: isPausedBottom ? 0 : "33.33%" }}
+            animate={{ x: isPausedBottom ? 0 : ["-50%", "0%"] }}
             transition={{
-              duration: 40,
+              duration: 24,
               repeat: Infinity,
               ease: "linear",
               repeatType: "loop",
