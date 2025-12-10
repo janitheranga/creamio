@@ -17,9 +17,14 @@ import ThemeToggle from "@/app/components/ThemeToggle";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
   const [selectedCurrency, setSelectedCurrency] = useState(currencies[0]);
   const [searchValue, setSearchValue] = useState("");
+
+  const cartItems: { id: number; name: string; price: number; qty: number }[] =
+    [];
+  const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
   return (
     <motion.nav
@@ -79,23 +84,30 @@ export default function Navbar() {
             </motion.div>
 
             {/* Wishlist */}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer hidden sm:block"
+            <Link
+              href="/wishlist"
+              className="hidden sm:block px-3 py-1.5 text-sm font-medium text-celadon-600 dark:text-celadon-400 hover:text-celadon-700 dark:hover:text-celadon-300 transition-colors cursor-pointer"
             >
-              <Heart className="w-5 h-5 text-celadon-600 dark:text-celadon-400" />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer hidden sm:block"
+              >
+                <Heart className="w-5 h-5 text-celadon-600 dark:text-celadon-400" />
+              </motion.button>
+            </Link>
 
             {/* Cart */}
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => setIsCartOpen(true)}
               className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer relative"
+              aria-label="Open cart"
             >
               <ShoppingCart className="w-5 h-5 text-celadon-600 dark:text-celadon-400" />
-              <span className="absolute top-0 right-0 w-4 h-4 bg-cherry-blossom-500 text-white text-xs rounded-full flex items-center justify-center">
-                0
+              <span className="absolute -top-1 -right-1 min-w-4 h-4 px-1 bg-cherry-blossom-500 text-white text-[10px] rounded-full flex items-center justify-center">
+                {cartCount}
               </span>
             </motion.button>
 
@@ -151,6 +163,112 @@ export default function Navbar() {
           </motion.div>
         )}
       </div>
+
+      {isCartOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-start justify-end bg-background backdrop-blur-sm"
+          onClick={(e) => {
+            if (e.currentTarget === e.target) setIsCartOpen(false);
+          }}
+        >
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            className="w-full max-w-md h-full bg-white dark:bg-slate-950 shadow-2xl border-l border-celadon-100 dark:border-celadon-800 flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-4 border-b border-celadon-100 dark:border-celadon-800">
+              <div>
+                <p className="text-sm uppercase tracking-wide text-celadon-600 dark:text-celadon-400">
+                  Your Cart
+                </p>
+                <p className="text-lg font-semibold text-slate-900 dark:text-white">
+                  {cartCount} item{cartCount === 1 ? "" : "s"}
+                </p>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsCartOpen(false)}
+                className="p-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors"
+                aria-label="Close cart"
+              >
+                <X className="w-5 h-5" />
+              </motion.button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 bg-white">
+              {cartItems.length === 0 ? (
+                <div className="h-full flex flex-col items-center justify-center text-center gap-3 text-slate-500 dark:text-slate-400">
+                  <ShoppingCart className="w-10 h-10 text-celadon-500" />
+                  <p className="text-base font-semibold text-slate-800 dark:text-white">
+                    Your cart is empty
+                  </p>
+                  <p className="text-sm">Add items to see them here.</p>
+                  <Link
+                    href="/products"
+                    className="px-4 py-2 bg-celadon-500 hover:bg-celadon-600 text-white rounded-lg font-semibold transition-colors cursor-pointer"
+                  >
+                    Continue shopping
+                  </Link>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {cartItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center justify-between rounded-lg border border-celadon-100 dark:border-celadon-800 p-3"
+                    >
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                          {item.name}
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          Qty: {item.qty}
+                        </p>
+                      </div>
+                      <div className="text-sm font-semibold text-celadon-600 dark:text-celadon-400">
+                        ${(item.price * item.qty).toFixed(2)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="px-5 py-4 border-t border-celadon-100 dark:border-celadon-800 space-y-3 bg-celadon-50/60 dark:bg-slate-900/60">
+              <div className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300">
+                <span>Subtotal</span>
+                <span className="font-semibold">
+                  $
+                  {cartItems
+                    .reduce((sum, item) => sum + item.price * item.qty, 0)
+                    .toFixed(2)}
+                </span>
+              </div>
+              <div className="flex gap-3">
+                <Link
+                  href="/cart"
+                  className="flex-1 text-center px-4 py-2 rounded-lg border border-celadon-400 text-celadon-700 dark:text-celadon-300 hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer font-semibold"
+                >
+                  View cart
+                </Link>
+                <button
+                  disabled={cartItems.length === 0}
+                  className="flex-1 px-4 py-2 rounded-lg bg-celadon-500 disabled:bg-celadon-200 text-white font-semibold hover:bg-celadon-600 transition-colors cursor-pointer disabled:cursor-not-allowed"
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </motion.nav>
   );
 }

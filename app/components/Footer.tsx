@@ -3,6 +3,9 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, Heart, Send } from "lucide-react";
+import { FaFacebook } from "react-icons/fa";
+import { FaSquareXTwitter, FaSquareInstagram } from "react-icons/fa6";
+import { AiFillTikTok } from "react-icons/ai";
 import { useState } from "react";
 
 export default function Footer() {
@@ -53,6 +56,66 @@ export default function Footer() {
       className="bg-slate-900 dark:bg-black text-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Newsletter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="border-y border-slate-700 py-8 my-8"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+              {/* Text Content */}
+              <div className="text-center lg:text-left flex-shrink-0">
+                <h3 className="text-xl font-semibold mb-2 text-white">
+                  Subscribe to Our Newsletter
+                </h3>
+                <p className="text-slate-300 text-sm">
+                  Get exclusive offers and latest updates delivered to your
+                  inbox
+                </p>
+              </div>
+
+              {/* Form */}
+              <div className="w-full lg:w-auto lg:flex-1 lg:max-w-md">
+                <form
+                  onSubmit={handleSubscribe}
+                  className="flex flex-col sm:flex-row gap-2"
+                >
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="flex-1 px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:border-celadon-500 focus:outline-none text-white placeholder-slate-400 transition-colors"
+                  />
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="submit"
+                    className="bg-celadon-500 hover:bg-celadon-600 px-6 py-2 rounded-lg font-semibold text-white transition-colors cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span className="sm:inline">Subscribe</span>
+                  </motion.button>
+                </form>
+                {isSubscribed && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="text-celadon-400 text-sm mt-2 text-center sm:text-left"
+                  >
+                    ✓ Thank you for subscribing!
+                  </motion.p>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 py-16">
           {/* Logo & Description */}
@@ -130,52 +193,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Newsletter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="border-y border-slate-700 py-8 my-8"
-        >
-          <div className="max-w-md">
-            <h3 className="text-xl font-semibold mb-2 text-white">
-              Subscribe to Our Newsletter
-            </h3>
-            <p className="text-slate-300 text-sm mb-4">
-              Get exclusive offers and latest updates delivered to your inbox
-            </p>
-            <form onSubmit={handleSubscribe} className="flex gap-2">
-              <motion.input
-                whileFocus={{ scale: 1.02 }}
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 px-4 py-2 rounded-lg bg-slate-800 border border-slate-700 focus:border-celadon-500 focus:outline-none text-white placeholder-slate-400 transition-colors"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                type="submit"
-                className="bg-celadon-500 hover:bg-celadon-600 px-4 py-2 rounded-lg font-semibold text-white transition-colors cursor-pointer flex items-center gap-2"
-              >
-                <Send className="w-4 h-4" />
-              </motion.button>
-            </form>
-            {isSubscribed && (
-              <motion.p
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="text-celadon-400 text-sm mt-2"
-              >
-                ✓ Thank you for subscribing!
-              </motion.p>
-            )}
-          </div>
-        </motion.div>
-
         {/* Bottom */}
         <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <motion.div
@@ -197,14 +214,14 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             className="flex gap-4"
           >
-            {["Facebook", "Twitter", "Instagram", "LinkedIn"].map((social) => (
+            {[FaFacebook, FaSquareXTwitter, FaSquareInstagram, AiFillTikTok].map((SocialIcon, idx) => (
               <motion.a
-                key={social}
+                key={idx}
                 whileHover={{ scale: 1.2 }}
                 href="#"
                 className="w-10 h-10 rounded-full bg-slate-800 hover:bg-celadon-500 flex items-center justify-center transition-colors cursor-pointer text-sm font-semibold"
               >
-                {social[0]}
+                <SocialIcon className="w-5 h-5" />
               </motion.a>
             ))}
           </motion.div>

@@ -6,7 +6,11 @@ import Image from "next/image";
 import { products, categories } from "@/app/lib/data";
 import { Star, ShoppingCart, LayoutGrid, List } from "lucide-react";
 import { MdTableRows } from "react-icons/md";
-import { TfiLayoutGrid2Alt, TfiLayoutGrid3Alt, TfiLayoutGrid4Alt } from "react-icons/tfi";
+import {
+  TfiLayoutGrid2Alt,
+  TfiLayoutGrid3Alt,
+  TfiLayoutGrid4Alt,
+} from "react-icons/tfi";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -78,7 +82,7 @@ export default function ProductsPage() {
       className="min-h-screen bg-white dark:bg-slate-950"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Sidebar - Filters */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -176,7 +180,7 @@ export default function ProductsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-3"
+            className="lg:col-span-4"
           >
             {/* Hero Section */}
             <motion.div
