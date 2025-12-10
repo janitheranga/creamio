@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { products } from "@/app/lib/data";
 import { useCartStore } from "@/app/lib/store/cartStore";
 import { useWishlistStore } from "@/app/lib/store/wishlistStore";
@@ -54,10 +55,12 @@ export default function BestSellingSection() {
             >
               {/* Image */}
               <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
+                  fill
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  priority={false}
                 />
 
                 {/* Wishlist Button */}

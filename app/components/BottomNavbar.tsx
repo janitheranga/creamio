@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { categories, languages, currencies } from "@/app/lib/data";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   ChevronDown,
@@ -166,7 +167,7 @@ export default function BottomNavbar() {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer"
                 >
-                  <span className="text-lg">{selectedLanguage.flag}</span>
+                  <span className="text-lg">{<Image src={selectedLanguage.flag} alt={selectedLanguage.name} width={24} height={24} />}</span>
                   <span className="text-sm font-medium hidden sm:inline">
                     {selectedLanguage.code.toUpperCase()}
                   </span>
@@ -193,7 +194,7 @@ export default function BottomNavbar() {
                     onClick={() => setSelectedLanguage(lang)}
                     className="cursor-pointer"
                   >
-                    {lang.flag} {lang.name}
+                    {<Image src={lang.flag} alt={lang.name} width={24} height={24} /> }<span className="pl-2">{lang.name}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -208,7 +209,7 @@ export default function BottomNavbar() {
                   className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-celadon-100 dark:hover:bg-celadon-900 transition-colors cursor-pointer"
                 >
                   <span className="text-lg font-bold">
-                    {selectedCurrency.symbol}
+                    {<selectedCurrency.symbol className="w-4 h-4" />}
                   </span>
                   <span className="text-sm font-medium hidden sm:inline">
                     {selectedCurrency.code}
@@ -236,7 +237,7 @@ export default function BottomNavbar() {
                     onClick={() => setSelectedCurrency(curr)}
                     className="cursor-pointer"
                   >
-                    {curr.symbol} {curr.code} - {curr.name}
+                    {<curr.symbol className="w-4 h-4" />} {curr.code} - {curr.name}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>

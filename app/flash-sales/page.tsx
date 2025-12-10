@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { products } from "@/app/lib/data";
 import { useCartStore } from "@/app/lib/store/cartStore";
 import { useWishlistStore } from "@/app/lib/store/wishlistStore";
+import Image from "next/image";
 import {
   Star,
   ShoppingCart,
@@ -280,9 +281,10 @@ export default function FlashSalesPage() {
                 >
                   {/* Image */}
                   <div className="relative h-48 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
+                      fill
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
 

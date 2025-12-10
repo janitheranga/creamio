@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { blogPosts } from "@/app/lib/data";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -56,10 +57,12 @@ export default function BlogPostPage() {
           transition={{ duration: 0.6 }}
           className="relative h-96 rounded-2xl overflow-hidden mb-8"
         >
-          <img
+          <Image
             src={post.image}
             alt={post.title}
+            fill
             className="w-full h-full object-cover"
+            priority
           />
         </motion.div>
 
@@ -148,9 +151,10 @@ export default function BlogPostPage() {
               >
                 {/* Image */}
                 <div className="relative h-40 overflow-hidden bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
-                  <img
+                  <Image
                     src={related.image}
                     alt={related.title}
+                    fill
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>

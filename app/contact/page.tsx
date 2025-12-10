@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from "lucide-react";
 import ReviewsLoopSection from "@/app/components/sections/ReviewsLoopSection";
 
@@ -245,9 +246,10 @@ export default function ContactPage() {
 
               {/* Map Placeholder */}
               <div className="relative h-80 rounded-xl overflow-hidden border border-celadon-200 dark:border-celadon-800">
-                <img
-                  src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
+                <Image
+                  src="/images/etc/Store_Location.jpg"
                   alt="Store location"
+                  fill
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-celadon-500/20 flex items-center justify-center">

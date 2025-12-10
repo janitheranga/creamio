@@ -200,10 +200,12 @@ export default function ProductsPage() {
               whileHover={{ scale: 1.02 }}
               className="relative h-64 rounded-2xl overflow-hidden mb-8 bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/30 dark:to-icy-aqua-900/30"
             >
-              <img
-                src="https://images.pexels.com/photos/821365/pexels-photo-821365.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              <Image
+                src="/images/products/Artisan_Cheese.jpg"
                 alt="Products"
+                fill
                 className="w-full h-full object-cover"
+                priority
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-8">
                 <h1 className="text-4xl font-bold text-white">Our Products</h1>
@@ -315,9 +317,10 @@ export default function ProductsPage() {
                 >
                   {/* Image */}
                   <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
+                      fill
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     {/* Wishlist Button */}

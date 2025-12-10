@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { reviews } from "@/app/lib/data";
 import { Star } from "lucide-react";
 
@@ -74,9 +75,11 @@ export default function ReviewsLoopSection() {
 
                   {/* Author */}
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src={review.image}
                       alt={review.name}
+                      width={40}
+                      height={40}
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     <div>
@@ -138,9 +141,11 @@ export default function ReviewsLoopSection() {
 
                   {/* Author */}
                   <div className="flex items-center gap-3">
-                    <img
+                    <Image
                       src={review.image}
                       alt={review.name}
+                      width={40}
+                      height={40}
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     <div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import {
   Heart,
   Award,
@@ -116,10 +117,12 @@ export default function AboutPage() {
               className="relative"
             >
               <div className="relative h-96 rounded-2xl overflow-hidden">
-                <img
-                  src="https://images.pexels.com/photos/3535181/pexels-photo-3535181.jpeg?auto=compress&cs=tinysrgb&w=800"
+                <Image
+                  src="/images/etc/Dairy_Farm.jpg"
                   alt="Dairy farm"
+                  fill
                   className="w-full h-full object-cover"
+                  priority
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
               </div>
@@ -220,19 +223,19 @@ export default function AboutPage() {
                 name: "Sarah Johnson",
                 role: "Founder & CEO",
                 image:
-                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+                  "/images/reviews/Review_Sarah_Johnson.jpg",
               },
               {
                 name: "Michael Chen",
                 role: "Head of Operations",
                 image:
-                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+                  "/images/reviews/Review_Michael_Chen.jpg",
               },
               {
                 name: "Emily Rodriguez",
                 role: "Quality Assurance Lead",
                 image:
-                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+                  "/images/reviews/Review_Emily_Rodriguez.jpg",
               },
             ].map((member, idx) => (
               <motion.div
@@ -245,9 +248,10 @@ export default function AboutPage() {
                 className="bg-white dark:bg-slate-950 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    fill
                     className="w-full h-full object-cover"
                   />
                 </div>

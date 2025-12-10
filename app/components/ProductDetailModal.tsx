@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 import { X, Star, ShoppingCart, Minus, Plus, Heart } from "lucide-react";
 import { useCartStore } from "@/app/lib/store/cartStore";
 import { useWishlistStore } from "@/app/lib/store/wishlistStore";
@@ -53,9 +54,9 @@ export default function ProductDetailModal({
     ? (product as any).images
     : [
         product.image,
-        `${product.image}&brightness=1.1`,
-        `${product.image}&contrast=1.1`,
-        `${product.image}&saturation=1.2`,
+        product.image,
+        product.image,
+        product.image,
       ];
 
   const handleAddToCart = () => {
@@ -137,9 +138,10 @@ export default function ProductDetailModal({
             {/* Left: Image */}
             <div className="relative">
               <div className="relative aspect-square rounded-xl overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
-                <img
+                <Image
                   src={productImages[selectedImage]}
                   alt={product.name}
+                  fill
                   className="w-full h-full object-cover"
                 />
                 {product.isFlashSale && (
@@ -170,9 +172,10 @@ export default function ProductDetailModal({
                         : "ring-1 ring-celadon-100 dark:ring-celadon-800 hover:ring-celadon-300 dark:hover:ring-celadon-600"
                     }`}
                   >
-                    <img
+                    <Image
                       src={img}
                       alt={`${product.name} view ${idx + 1}`}
+                      fill
                       className="w-full h-full object-cover"
                     />
                     {selectedImage === idx && (

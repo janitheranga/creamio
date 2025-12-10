@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { topCategories } from "@/app/lib/data";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -38,12 +39,14 @@ export default function TopCategoriesSection() {
                 className="block h-full"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={category.image}
                     alt={category.name}
+                    fill
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
                 </div>
 
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">

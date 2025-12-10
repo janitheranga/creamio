@@ -1,3 +1,5 @@
+import { DollarSign, Euro, JapaneseYen, PoundSterling, SwissFranc } from "lucide-react";
+
 // Products data
 export const products = [
   {
@@ -343,17 +345,17 @@ export const notifications = [
 
 // Languages and Currencies
 export const languages = [
-  { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "es", name: "Spanish", flag: "🇪🇸" },
-  { code: "fr", name: "French", flag: "🇫🇷" },
-  { code: "de", name: "German", flag: "🇩🇪" },
-  { code: "it", name: "Italian", flag: "🇮🇹" },
+  { code: "en", name: "English", flag: "/images/flags/US.svg" },
+  { code: "es", name: "Spanish", flag: "/images/flags/ES.svg" },
+  { code: "fr", name: "French", flag: "/images/flags/FR.svg" },
+  { code: "de", name: "German", flag: "/images/flags/DE.svg" },
+  { code: "it", name: "Italian", flag: "/images/flags/IT.svg" },
 ];
 
 export const currencies = [
-  { code: "USD", symbol: "$", name: "US Dollar" },
-  { code: "EUR", symbol: "€", name: "Euro" },
-  { code: "GBP", symbol: "£", name: "British Pound" },
-  { code: "CAD", symbol: "C$", name: "Canadian Dollar" },
-  { code: "AUD", symbol: "A$", name: "Australian Dollar" },
+  { code: "USD", symbol: DollarSign, name: "US Dollar" },
+  { code: "EUR", symbol: Euro, name: "Euro" },
+  { code: "GBP", symbol: PoundSterling, name: "British Pound" },
+  { code: "YEN", symbol: JapaneseYen, name: "Japanese Yen" },
+  { code: "CHF", symbol: SwissFranc, name: "Swiss Franc" },
 ];

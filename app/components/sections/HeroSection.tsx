@@ -10,22 +10,19 @@ const heroSlides = [
     id: 1,
     title: "Fresh Milk Delivery",
     description: "Experience the freshness of farm-to-table dairy",
-    image:
-      "/images/slideshow/Fresh_Milk_Delivery.jpg",
+    image: "/images/slideshow/Fresh_Milk_Delivery.jpg",
   },
   {
     id: 2,
     title: "Artisan Cheese Selection",
     description: "Premium handcrafted cheese from around the world",
-    image:
-      "/images/slideshow/Artisan_Cheese_Selection.jpg",
+    image: "/images/slideshow/Artisan_Cheese_Selection.jpg",
   },
   {
     id: 3,
     title: "Creamy Yogurt Range",
     description: "Delicious and nutritious yogurt for your family",
-    image:
-      "/images/slideshow/Creamy_Yogurt_Range.jpg",
+    image: "/images/slideshow/Creamy_Yogurt_Range.jpg",
   },
 ];
 
@@ -136,12 +133,14 @@ export default function HeroSection() {
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 className="absolute inset-0 w-full h-full"
               >
-                <img
+                <Image
                   src={heroSlides[currentSlide].image}
                   alt={heroSlides[currentSlide].title}
+                  fill
                   className="w-full h-full object-cover"
+                  priority={currentSlide === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
                   <h2 className="text-3xl font-bold text-white mb-2">
                     {heroSlides[currentSlide].title}
                   </h2>

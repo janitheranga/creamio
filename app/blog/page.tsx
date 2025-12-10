@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { blogPosts } from "@/app/lib/data";
 import {
   ChevronLeft,
@@ -73,12 +74,14 @@ export default function BlogPage() {
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="absolute inset-0 w-full h-full"
             >
-              <img
+              <Image
                 src={currentPost.image}
                 alt={currentPost.title}
+                fill
                 className="w-full h-full object-cover"
+                priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8">
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-8">
                 <div className="flex gap-4 mb-4">
                   <span className="bg-celadon-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                     {currentPost.category}
@@ -166,10 +169,11 @@ export default function BlogPage() {
                 className="group relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-celadon-100 dark:border-celadon-800 hover:border-celadon-400 dark:hover:border-celadon-500 transition-all"
               >
                 {/* Image */}
-                <div className="relative h-40 overflow-hidden bg-gradient-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
-                  <img
+                <div className="relative h-40 overflow-hidden bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/20 dark:to-icy-aqua-900/20">
+                  <Image
                     src={post.image}
                     alt={post.title}
+                    fill
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <span className="absolute top-3 left-3 bg-celadon-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
