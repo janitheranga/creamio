@@ -4,13 +4,19 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { products } from "@/app/lib/data";
 import { useCartStore } from "@/app/lib/store/cartStore";
-import { Star, ShoppingCart, Zap } from "lucide-react";
+import { useWishlistStore } from "@/app/lib/store/wishlistStore";
+import { Star, ShoppingCart, Zap, Heart } from "lucide-react";
 import ProductDetailModal from "@/app/components/ProductDetailModal";
 
 const flashSaleProducts = products.filter((p) => p.isFlashSale);
 
 export default function FlashSalesSection() {
   const addItem = useCartStore((state) => state.addItem);
+  const {
+    addItem: addToWishlist,
+    removeItem: removeFromWishlist,
+    isInWishlist,
+  } = useWishlistStore();
   const [selectedProduct, setSelectedProduct] = useState<
     (typeof flashSaleProducts)[0] | null
   >(null);
@@ -69,14 +75,53 @@ export default function FlashSalesSection() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
 
-                {/* Flash Sale Badge */}
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute top-3 left-3 bg-cherry-blossom-500 text-white px-3 py-1 rounded-full text-xs font-bold"
-                >
-                  SALE
-                </motion.div>
+                {/* Top Left: Wishlist Button and Flash Sale Badge */}
+                <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
+                  {/* Wishlist Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const wishlistItem = {
+                        id: String(product.id),
+                        name: product.name,
+                        price: product.price,
+                        discountedPrice: product.discountedPrice,
+                        image: product.image,
+                        category: product.category,
+                        rating: product.rating,
+                        reviews: product.reviews,
+                        stock: product.stock,
+                        isFlashSale: product.isFlashSale,
+                      };
+                      if (isInWishlist(String(product.id))) {
+                        removeFromWishlist(String(product.id));
+                      } else {
+                        addToWishlist(wishlistItem);
+                      }
+                    }}
+                    className="p-2 bg-white/90 dark:bg-slate-900/90 rounded-full hover:bg-white dark:hover:bg-slate-900 transition-colors cursor-pointer"
+                    aria-label="Add to wishlist"
+                  >
+                    <Heart
+                      className={`w-5 h-5 ${
+                        isInWishlist(String(product.id))
+                          ? "fill-cherry-blossom-500 text-cherry-blossom-500"
+                          : "text-slate-600 dark:text-slate-400"
+                      }`}
+                    />
+                  </motion.button>
+
+                  {/* Flash Sale Badge */}
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="bg-cherry-blossom-500 text-white px-3 py-1 rounded-full text-xs font-bold"
+                  >
+                    SALE
+                  </motion.div>
+                </div>
 
                 {/* Stock Badge */}
                 <div className="absolute top-3 right-3 bg-celadon-500 text-white px-2 py-1 rounded text-xs font-semibold">

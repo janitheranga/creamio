@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Star, ShoppingCart, Minus, Plus } from "lucide-react";
+import { X, Star, ShoppingCart, Minus, Plus, Heart } from "lucide-react";
 import { useCartStore } from "@/app/lib/store/cartStore";
+import { useWishlistStore } from "@/app/lib/store/wishlistStore";
 
 type Product = {
   id: number;
@@ -35,6 +36,11 @@ export default function ProductDetailModal({
   const [mounted, setMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const addItem = useCartStore((state) => state.addItem);
+  const {
+    addItem: addToWishlist,
+    removeItem: removeFromWishlist,
+    isInWishlist,
+  } = useWishlistStore();
 
   useState(() => {
     setMounted(true);
@@ -91,6 +97,41 @@ export default function ProductDetailModal({
           >
             <X className="w-5 h-5" />
           </button>
+
+          {/* Wishlist Button */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              const wishlistItem = {
+                id: String(product.id),
+                name: product.name,
+                price: product.price,
+                discountedPrice: product.discountedPrice,
+                image: product.image,
+                category: product.category,
+                rating: product.rating,
+                reviews: product.reviews,
+                stock: product.stock,
+                isFlashSale: product.isFlashSale,
+              };
+              if (isInWishlist(String(product.id))) {
+                removeFromWishlist(String(product.id));
+              } else {
+                addToWishlist(wishlistItem);
+              }
+            }}
+            className="absolute top-4 right-16 z-10 p-2 rounded-full bg-white/90 dark:bg-slate-900/90 hover:bg-white dark:hover:bg-slate-900 transition-colors cursor-pointer"
+            aria-label="Add to wishlist"
+          >
+            <Heart
+              className={`w-5 h-5 ${
+                isInWishlist(String(product.id))
+                  ? "fill-cherry-blossom-500 text-cherry-blossom-500"
+                  : "text-slate-600 dark:text-slate-400"
+              }`}
+            />
+          </motion.button>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8 overflow-y-auto max-h-[90vh]">
             {/* Left: Image */}

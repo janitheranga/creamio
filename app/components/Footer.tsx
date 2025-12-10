@@ -201,7 +201,7 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             className="text-slate-400 text-sm text-center sm:text-left"
           >
-            <p>© 2024 Creamio. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Creamio. All rights reserved.</p>
             <p className="flex items-center justify-center sm:justify-start gap-1 mt-1">
               Made with <Heart className="w-4 h-4 text-cherry-blossom-500" />{" "}
               for dairy lovers
