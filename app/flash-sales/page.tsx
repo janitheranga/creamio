@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { products } from "@/app/lib/data";
 import { useCartStore } from "@/app/lib/store/cartStore";
@@ -34,6 +34,34 @@ export default function FlashSalesPage() {
   const [sortBy, setSortBy] = useState<"discount" | "price" | "rating">(
     "discount"
   );
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 23,
+    minutes: 59,
+    seconds: 45,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        let { hours, minutes, seconds } = prev;
+        if (seconds > 0) {
+          seconds--;
+        } else if (minutes > 0) {
+          minutes--;
+          seconds = 59;
+        } else if (hours > 0) {
+          hours--;
+          minutes = 59;
+          seconds = 59;
+        } else {
+          clearInterval(timer);
+          return { hours: 0, minutes: 0, seconds: 0 };
+        }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Get flash sale products
   const flashSaleProducts = useMemo(() => {
@@ -138,7 +166,7 @@ export default function FlashSalesPage() {
               available!
             </p>
 
-            {/* Countdown Timer Placeholder */}
+            {/* Countdown Timer */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -150,8 +178,12 @@ export default function FlashSalesPage() {
                 <p className="text-xs text-slate-600 uppercase font-semibold">
                   Sale Ends In
                 </p>
-                <div className="flex gap-2 text-2xl font-bold text-slate-900">
-                  <span>23:59:45</span>
+                <div className="flex gap-2 text-2xl font-bold text-slate-900 font-mono">
+                  <span>{String(timeLeft.hours).padStart(2, "0")}</span>
+                  <span>:</span>
+                  <span>{String(timeLeft.minutes).padStart(2, "0")}</span>
+                  <span>:</span>
+                  <span>{String(timeLeft.seconds).padStart(2, "0")}</span>
                 </div>
               </div>
             </motion.div>

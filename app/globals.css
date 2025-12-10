@@ -59,11 +59,6 @@
     --foreground: 0 0% 3.6%;
   }
 
-  .dark {
-    /* Dark mode background and foreground */
-    --background: 0 0% 3.6%;
-    --foreground: 0 0% 98%;
-  }
 }
 
 @layer base {
@@ -217,10 +212,6 @@
 
 ::-webkit-scrollbar-track {
   background-color: rgb(243, 244, 246);
-}
-
-.dark ::-webkit-scrollbar-track {
-  background-color: rgb(15, 23, 42);
 }
 
 ::-webkit-scrollbar-thumb {
