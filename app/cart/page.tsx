@@ -20,7 +20,7 @@ export default function CartPage() {
           className="flex items-center gap-3 mb-12"
         >
           <ShoppingCart className="w-8 h-8 text-celadon-500" />
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900">
             Shopping Cart
           </h1>
         </motion.div>
