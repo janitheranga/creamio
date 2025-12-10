@@ -14,6 +14,7 @@ import {
   Info,
   Phone,
   Tag,
+  Zap,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -50,6 +51,7 @@ export default function BottomNavbar() {
     { name: "About", href: "/about", icon: Info },
     { name: "Contact", href: "/contact", icon: Phone },
     { name: "Deals", href: "/deals", icon: Tag },
+    { name: "Flash Sales", href: "/flash-sales", icon: Zap },
   ];
 
   return (
@@ -220,7 +222,7 @@ export default function BottomNavbar() {
             </DropdownMenu>
 
             {/* Mobile Menu for nav items */}
-            <div className="md:hidden">
+            <div className="md:hidden z-100">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <motion.button
