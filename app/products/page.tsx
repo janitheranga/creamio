@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { products, categories } from "@/app/lib/data";
 import { Star, ShoppingCart, LayoutGrid, List } from "lucide-react";
+import { MdTableRows } from "react-icons/md";
+import { TfiLayoutGrid2Alt, TfiLayoutGrid3Alt, TfiLayoutGrid4Alt } from "react-icons/tfi";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -199,12 +201,13 @@ export default function ProductsPage() {
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8"
             >
               {/* Layout Options */}
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
+                <p className="pr-4">View as</p>
                 {[
-                  { id: "grid", icon: LayoutGrid, label: "Row View" },
-                  { id: "2col", icon: LayoutGrid, label: "2 Columns" },
-                  { id: "3col", icon: LayoutGrid, label: "3 Columns" },
-                  { id: "4col", icon: LayoutGrid, label: "4 Columns" },
+                  { id: "grid", icon: MdTableRows, label: "Row View" },
+                  { id: "2col", icon: TfiLayoutGrid2Alt, label: "2 Columns" },
+                  { id: "3col", icon: TfiLayoutGrid3Alt, label: "3 Columns" },
+                  { id: "4col", icon: TfiLayoutGrid4Alt, label: "4 Columns" },
                 ].map((option) => (
                   <motion.button
                     key={option.id}
@@ -217,7 +220,7 @@ export default function ProductsPage() {
                         : "bg-celadon-100 dark:bg-celadon-900 text-celadon-700 dark:text-celadon-300 hover:bg-celadon-200 dark:hover:bg-celadon-800"
                     }`}
                   >
-                    {option.label}
+                    <option.icon />
                   </motion.button>
                 ))}
               </div>
