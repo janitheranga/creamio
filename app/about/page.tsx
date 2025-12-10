@@ -117,7 +117,7 @@ export default function AboutPage() {
             >
               <div className="relative h-96 rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=800&h=600&fit=crop"
+                  src="https://images.pexels.com/photos/3535181/pexels-photo-3535181.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Dairy farm"
                   className="w-full h-full object-cover"
                 />

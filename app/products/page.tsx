@@ -201,7 +201,7 @@ export default function ProductsPage() {
               className="relative h-64 rounded-2xl overflow-hidden mb-8 bg-linear-to-br from-celadon-50 to-icy-aqua-50 dark:from-celadon-900/30 dark:to-icy-aqua-900/30"
             >
               <img
-                src="https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=1200&h=400&fit=crop"
+                src="https://images.pexels.com/photos/821365/pexels-photo-821365.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Products"
                 className="w-full h-full object-cover"
               />

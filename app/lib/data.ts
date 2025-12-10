@@ -6,8 +6,7 @@ export const products = [
     category: "Milk",
     price: 3.99,
     discountedPrice: 2.99,
-    image:
-      "https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=500&h=500&fit=crop",
+    image: "/images/products/Fresh_Whole_Milk.jpg",
     rating: 4.5,
     reviews: 128,
     stock: 45,
@@ -19,8 +18,7 @@ export const products = [
     category: "Yogurt",
     price: 4.99,
     discountedPrice: 3.49,
-    image:
-      "https://images.unsplash.com/photo-1535920527894-b45eba376ac0?w=500&h=500&fit=crop",
+    image: "/images/products/Greek_Yogurt.jpg",
     rating: 4.8,
     reviews: 256,
     stock: 32,
@@ -32,8 +30,7 @@ export const products = [
     category: "Cheese",
     price: 6.99,
     discountedPrice: 5.49,
-    image:
-      "https://images.unsplash.com/photo-1452894895917-032f887f6b85?w=500&h=500&fit=crop",
+    image: "/images/products/Cheddar_Cheese.jpg",
     rating: 4.7,
     reviews: 89,
     stock: 28,
@@ -45,8 +42,7 @@ export const products = [
     category: "Butter",
     price: 5.99,
     discountedPrice: 4.49,
-    image:
-      "https://images.unsplash.com/photo-1639261469764-8fdc3fb4aa19?w=500&h=500&fit=crop",
+    image: "/images/products/Butter_Organic.jpg",
     rating: 4.6,
     reviews: 167,
     stock: 55,
@@ -58,8 +54,7 @@ export const products = [
     category: "Cream",
     price: 3.49,
     discountedPrice: 2.49,
-    image:
-      "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=500&h=500&fit=crop",
+    image: "/images/products/Fresh_Cream.jpg",
     rating: 4.4,
     reviews: 95,
     stock: 40,
@@ -71,8 +66,7 @@ export const products = [
     category: "Cheese",
     price: 4.49,
     discountedPrice: 3.49,
-    image:
-      "https://images.unsplash.com/photo-1452894895917-032f887f6b85?w=500&h=500&fit=crop",
+    image: "/images/products/Mozzarella_Cheese.jpg",
     rating: 4.5,
     reviews: 132,
     stock: 38,
@@ -84,8 +78,7 @@ export const products = [
     category: "Milk",
     price: 2.99,
     discountedPrice: 1.99,
-    image:
-      "https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=500&h=500&fit=crop",
+    image: "/images/products/Skimmed_Milk.jpg",
     rating: 4.3,
     reviews: 76,
     stock: 60,
@@ -97,8 +90,7 @@ export const products = [
     category: "Yogurt",
     price: 2.49,
     discountedPrice: 1.99,
-    image:
-      "https://images.unsplash.com/photo-1535920527894-b45eba376ac0?w=500&h=500&fit=crop",
+    image: "/images/products/Flavored_Yogurt.jpg",
     rating: 4.6,
     reviews: 203,
     stock: 50,
@@ -110,8 +102,7 @@ export const products = [
     category: "Cheese",
     price: 8.99,
     discountedPrice: 6.99,
-    image:
-      "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=500&h=500&fit=crop",
+    image: "/images/products/Parmesan_Cheese.jpg",
     rating: 4.9,
     reviews: 145,
     stock: 22,
@@ -123,8 +114,7 @@ export const products = [
     category: "Cheese",
     price: 5.49,
     discountedPrice: 3.99,
-    image:
-      "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=500&h=500&fit=crop",
+    image: "/images/products/Cottage_Cheese.jpg",
     rating: 4.6,
     reviews: 112,
     stock: 35,
@@ -136,8 +126,7 @@ export const products = [
     category: "Cream",
     price: 4.29,
     discountedPrice: 2.99,
-    image:
-      "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500&h=500&fit=crop",
+    image: "/images/products/Whipped_Cream.jpg",
     rating: 4.7,
     reviews: 98,
     stock: 42,
@@ -191,22 +180,19 @@ export const topCategories = [
     id: 1,
     name: "Fresh Milk",
     description: "100% Pure and Fresh Dairy Milk",
-    image:
-      "https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=600&h=400&fit=crop",
+    image: "/images/categories/Category_Fresh_Milk.jpg",
   },
   {
     id: 2,
     name: "Artisan Cheese",
     description: "Premium Handcrafted Cheese Collection",
-    image:
-      "https://images.unsplash.com/photo-1452894895917-032f887f6b85?w=600&h=400&fit=crop",
+    image: "/images/categories/Category_Artisan_Cheese.jpg",
   },
   {
     id: 3,
     name: "Creamy Yogurt",
     description: "Delicious and Nutritious Yogurt Range",
-    image:
-      "https://images.unsplash.com/photo-1535920527894-b45eba376ac0?w=600&h=400&fit=crop",
+    image: "/images/categories/Category_Creamy_Yogurt.jpg",
   },
 ];
 
@@ -252,48 +238,42 @@ export const reviews = [
     rating: 5,
     comment:
       "Amazing quality milk! Fresh and delicious. Will definitely order again.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+    image: "/images/reviews/Review_Sarah_Johnson.jpg",
   },
   {
     id: 2,
     name: "Michael Chen",
     rating: 5,
     comment: "The cheese selection is outstanding. Highly recommend Creamio!",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    image: "/images/reviews/Review_Michael_Chen.jpg",
   },
   {
     id: 3,
     name: "Emma Davis",
     rating: 4,
     comment: "Great customer service and fast delivery. Very satisfied!",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+    image: "/images/reviews/Review_Emma_Davis.jpg",
   },
   {
     id: 4,
     name: "James Wilson",
     rating: 5,
     comment: "Best yogurt I've ever tasted. Worth every penny!",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+    image: "/images/reviews/Review_James_Wilson.jpg",
   },
   {
     id: 5,
     name: "Lisa Anderson",
     rating: 5,
     comment: "Excellent quality and reasonable prices. Highly recommended!",
-    image:
-      "https://images.unsplash.com/photo-1534751516642-a1efb6aeb4fe?w=150&h=150&fit=crop",
+    image: "/images/reviews/Review_Lisa_Anderson.jpg",
   },
   {
     id: 6,
     name: "Robert Brown",
     rating: 4,
     comment: "Very happy with my purchase. Great quality dairy products.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+    image: "/images/reviews/Review_Robert_Brown.jpg",
   },
 ];
 
@@ -304,8 +284,7 @@ export const blogPosts = [
     title: "The Health Benefits of Fresh Dairy",
     excerpt:
       "Discover why fresh dairy products are essential for your health and wellness journey.",
-    image:
-      "https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=400&h=300&fit=crop",
+    image: "/images/blog-posts/Health_Benefits_of_Fresh_Dairy.jpg",
     date: "Dec 1, 2024",
     author: "Sarah Miller",
     category: "Health",
@@ -317,8 +296,7 @@ export const blogPosts = [
     title: "How to Store Cheese Properly",
     excerpt:
       "Learn the best practices for storing different types of cheese to maintain freshness.",
-    image:
-      "https://images.unsplash.com/photo-1452894895917-032f887f6b85?w=400&h=300&fit=crop",
+    image: "/images/blog-posts/How_to_Store_Cheese_Properly.jpg",
     date: "Nov 28, 2024",
     author: "James Wilson",
     category: "Tips",
@@ -330,8 +308,7 @@ export const blogPosts = [
     title: "Yogurt: A Probiotic Powerhouse",
     excerpt:
       "Explore how yogurt supports digestive health with beneficial probiotics.",
-    image:
-      "https://images.unsplash.com/photo-1535920527894-b45eba376ac0?w=400&h=300&fit=crop",
+    image: "/images/blog-posts/Yogurt_A_Probiotic_Powerhouse.jpg",
     date: "Nov 25, 2024",
     author: "Emma Davis",
     category: "Nutrition",

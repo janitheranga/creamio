@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { blogPosts } from "@/app/lib/data";
 import {
@@ -14,6 +14,15 @@ import Link from "next/link";
 
 export default function BlogPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-play slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % blogPosts.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % blogPosts.length);
@@ -58,10 +67,11 @@ export default function BlogPage() {
           <div className="relative h-96 rounded-2xl overflow-hidden">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="relative w-full h-full"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full"
             >
               <img
                 src={currentPost.image}

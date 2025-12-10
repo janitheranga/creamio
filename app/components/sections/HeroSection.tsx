@@ -11,21 +11,21 @@ const heroSlides = [
     title: "Fresh Milk Delivery",
     description: "Experience the freshness of farm-to-table dairy",
     image:
-      "https://images.unsplash.com/photo-1550949387-9b91b58b6993?w=800&h=600&fit=crop",
+      "/images/slideshow/Fresh_Milk_Delivery.jpg",
   },
   {
     id: 2,
     title: "Artisan Cheese Selection",
     description: "Premium handcrafted cheese from around the world",
     image:
-      "https://images.unsplash.com/photo-1452894895917-032f887f6b85?w=800&h=600&fit=crop",
+      "/images/slideshow/Artisan_Cheese_Selection.jpg",
   },
   {
     id: 3,
     title: "Creamy Yogurt Range",
     description: "Delicious and nutritious yogurt for your family",
     image:
-      "https://images.unsplash.com/photo-1535920527894-b45eba376ac0?w=800&h=600&fit=crop",
+      "/images/slideshow/Creamy_Yogurt_Range.jpg",
   },
 ];
 
@@ -35,6 +35,15 @@ export default function HeroSection() {
   const mouseY = useMotionValue(0);
   const rotateX = useSpring(0, { stiffness: 100, damping: 30 });
   const rotateY = useSpring(0, { stiffness: 100, damping: 30 });
+
+  // Auto-play slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -121,10 +130,11 @@ export default function HeroSection() {
             <div className="relative h-[400px] rounded-2xl overflow-hidden">
               <motion.div
                 key={currentSlide}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative w-full h-full"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="absolute inset-0 w-full h-full"
               >
                 <img
                   src={heroSlides[currentSlide].image}
