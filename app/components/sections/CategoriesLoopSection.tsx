@@ -48,7 +48,7 @@ export default function CategoriesLoopSection() {
               <motion.div
                 key={`${category.id}-${idx}`}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className="shrink-0 min-w-[200px]"
+                className="shrink-0 min-w-50"
               >
                 <Link
                   href={`/products?category=${category.name}`}

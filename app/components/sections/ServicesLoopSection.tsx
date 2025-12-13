@@ -45,7 +45,7 @@ export default function ServicesLoopSection() {
               <motion.div
                 key={`${service.id}-${idx}`}
                 whileHover={{ scale: 1.05, y: -10 }}
-                className="shrink-0 min-w-[250px]"
+                className="shrink-0 min-w-62.5"
               >
                 <div className="h-full bg-white rounded-xl p-8 border border-celadon-100 hover:border-celadon-400 hover:shadow-lg transition-all text-center">
                   <motion.div

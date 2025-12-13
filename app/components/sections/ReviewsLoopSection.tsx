@@ -51,7 +51,7 @@ export default function ReviewsLoopSection() {
               <motion.div
                 key={`top-${review.id}-${idx}`}
                 whileHover={{ scale: 1.05 }}
-                className="shrink-0 min-w-[300px]"
+                className="shrink-0 min-w-75"
               >
                 <div className="h-full bg-white rounded-xl p-6 border border-celadon-100 hover:border-celadon-400 hover:shadow-lg transition-all cursor-pointer">
                   {/* Rating */}
@@ -117,7 +117,7 @@ export default function ReviewsLoopSection() {
               <motion.div
                 key={`bottom-${review.id}-${idx}`}
                 whileHover={{ scale: 1.05 }}
-                className="shrink-0 min-w-[300px]"
+                className="shrink-0 min-w-75"
               >
                 <div className="h-full bg-white rounded-xl p-6 border border-celadon-100 hover:border-celadon-400 hover:shadow-lg transition-all cursor-pointer">
                   {/* Rating */}

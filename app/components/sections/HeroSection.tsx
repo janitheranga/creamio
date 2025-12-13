@@ -74,7 +74,7 @@ export default function HeroSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-[600px] bg-linear-to-br from-celadon-50 to-icy-aqua-50 overflow-hidden"
+      className="min-h-150 bg-linear-to-br from-celadon-50 to-icy-aqua-50 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center py-16">
@@ -124,7 +124,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-2 relative"
           >
-            <div className="relative h-[400px] rounded-2xl overflow-hidden">
+            <div className="relative h-100 rounded-2xl overflow-hidden">
               <motion.div
                 key={currentSlide}
                 initial={{ opacity: 0, x: 100 }}
